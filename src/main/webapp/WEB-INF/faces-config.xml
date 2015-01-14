@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+
+	<navigation-rule>
+		<from-view-id>/seleccionTragos.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ventaTragoAction.realizarVenta}</from-action>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/seleccionTragos.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{ventaTragoAction.realizarVenta}</from-action>
+			<from-outcome>successBarra</from-outcome>
+			<to-view-id>/seleccionBarra.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{ventaTragoAction.realizarVenta}</from-action>
+			<from-outcome>successMesera1</from-outcome>
+			<to-view-id>/seleccionMesera1.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{ventaTragoAction.realizarVenta}</from-action>
+			<from-outcome>successMesera2</from-outcome>
+			<to-view-id>/seleccionMesera2.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{ventaTragoAction.realizarVenta}</from-action>
+			<from-outcome>successMesera3</from-outcome>
+			<to-view-id>/seleccionMesera3.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/modificarParametria.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ventaTragoAction.realizarVenta}</from-action>
+			<from-outcome>modificarParametria</from-outcome>
+			<to-view-id>/modificarParametria.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/cerrarMesa.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{cerrarMesaAction.cerrarMesa}</from-action>
+			<from-outcome>mesaCerradaSuccess</from-outcome>
+			<to-view-id>/cerrarMesaListaConsumos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/cerrarMesaListaConsumos.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{cerrarMesaAction.cerrarMesaSeleccionada}</from-action>
+			<from-outcome>mesaCerradaSuccessOK</from-outcome>
+			<to-view-id>/cerrarMesa.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+	</application>
+
+</faces-config>

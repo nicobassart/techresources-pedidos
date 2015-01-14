@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Pantalla de precio de los tragos</title>
+	<h:outputStylesheet library="css" name="style_table.css" />
+</h:head>
+<h:body styleClass="bodyPantalla">
+	<h:form id="form">
+
+		<p:poll interval="#{tragoBean.verificarTime}"
+			listener="#{tragoBean.decrementarPrecio}" update="dataTable,dataTable1,marqueens" />
+
+		<p:layout id="layout" fullPage="true">
+			<p:layoutUnit position="west" size="50%" collapsible="true"  resizable="true">
+				<p:dataTable id="dataTable" var="trago" value="#{tragoBean.listatragosLeft}">
+
+					<p:column styleClass="pantallaTexto">
+						<h:outputText value="#{trago.nombre}" />
+					</p:column>
+
+					<p:column styleClass="pantallaNumeroEstado#{trago.estado}" width="125">
+						<h:outputText value="$#{trago.precio}" />
+					</p:column>
+
+					<p:column styleClass="pantallaTexto">
+						<p:graphicImage id="tab1Img" value="/imgs/#{trago.estado}.png"
+							width="100" height="54" styleClass="pantallaFlecha" />
+					</p:column>
+
+				</p:dataTable>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" size="50%" >
+				<p:dataTable id="dataTable1" var="trago" value="#{tragoBean.listatragosRigth}">
+
+					<p:column styleClass="pantallaTexto">
+						<h:outputText value="#{trago.nombre}" />
+					</p:column>
+
+					<p:column styleClass="pantallaNumeroEstado#{trago.estado}" width="125">
+						<h:outputText value="$#{trago.precio}" />
+					</p:column>
+
+					<p:column styleClass="pantallaTexto">
+						<p:graphicImage id="tab1Img" value="/imgs/#{trago.estado}.png"
+							width="100" height="54" styleClass="pantallaFlecha" />
+					</p:column>
+
+				</p:dataTable>
+			</p:layoutUnit>
+
+			<p:layoutUnit  position="south" size="55"  style="overflow:hidden !important">
+				<marquee class="pantallaTexto"><h:outputText value="#{tragoBean.listatragos}" id="marqueens" /></marquee>
+			</p:layoutUnit>
+		</p:layout>
+	</h:form>
+</h:body>
+</html>
