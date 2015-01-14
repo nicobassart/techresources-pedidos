@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns="http://java.sun.com/xml/ns/javaee"
+   xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+   id="WebApp_ID"
+   version="3.0">
+
+
+  	<display-name>Archetype Created Web Application</display-name>
+  
+  	<context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+        <!-- description>
+            Define the value returned by Application.getProjectStage(). Allowed values: Production, Development,
+            UnitTest, SystemTest, Extension. Default value is Production. No se para que funciona!
+        </description-->
+    </context-param>
+ 
+    <!-- Definir este parámetro es más cómodo y más visual que usar el <ui:remove> de Facelets.-->
+    <!-- context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+        <description>Do not render comments in facelets (xhtml) pages. Default is false.</description>
+    </context-param-->
+    <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+        <!-- description>Do not render comments in facelets (xhtml) pages. Default is false.</description-->
+    </context-param>
+    
+    <context-param>
+    	<param-name>contextConfigLocation</param-name>
+    	<param-value>WEB-INF/classes/applicationContext.xml</param-value>
+  	</context-param>
+
+   <!-- Welcome Page -->
+   <welcome-file-list>
+     <welcome-file>index.xhtml</welcome-file>
+   </welcome-file-list>
+
+  	<listener>
+  		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  	</listener>
+  	
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  	</listener>
+  	
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    
+</web-app>

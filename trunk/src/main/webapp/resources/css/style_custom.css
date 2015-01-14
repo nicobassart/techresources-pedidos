@@ -1,0 +1,23 @@
+.botonMesera {
+	width: 170px;
+	margin: 15px 15px 15px 15px;
+}
+
+.botonAdmin {
+	width: 220px;
+	margin: 15px 15px 15px 15px;
+}
+
+.botonGenerico {
+	margin: 15px 15px 15px 15px;
+}
+
+.bodyPantalla {
+	background-color: black;
+}
+
+.pantallaTexto {
+	font-size: larger;
+	font-family: led board reversed;
+	color: white;
+}

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<f:view>
+		<ui:composition template="/template.xhtml">
+
+			<ui:define name="body">
+				<h:form>
+
+					<p:messages />
+
+					<p:panelGrid>
+						<f:facet name="header">
+							<p:row>
+								<p:column>Seleccionar una mesa a cerrar</p:column>
+							</p:row>
+
+						</f:facet>
+						<p:row>
+							<p:column>
+								<p:selectOneMenu value="#{cerrarMesaBean.idMesa}"
+									required="true">
+									<f:selectItem itemLabel="Seleccionar" itemValue="" />
+									<f:selectItem itemLabel="Mesa 1" itemValue="1" />
+									<f:selectItem itemLabel="Mesa 2" itemValue="2" />
+									<f:selectItem itemLabel="Mesa 3" itemValue="3" />
+									<f:selectItem itemLabel="Mesa 4" itemValue="4" />
+									<f:selectItem itemLabel="Mesa 5" itemValue="5" />
+									<f:selectItem itemLabel="Mesa 6" itemValue="6" />
+									<f:selectItem itemLabel="Mesa 7" itemValue="7" />
+									<f:selectItem itemLabel="Mesa 8" itemValue="8" />
+									<f:selectItem itemLabel="Mesa 9" itemValue="9" />
+									<f:selectItem itemLabel="Mesa 10" itemValue="10" />
+									<f:selectItem itemLabel="Mesa 11" itemValue="11" />
+									<f:selectItem itemLabel="Mesa 12" itemValue="12" />
+									<f:selectItem itemLabel="Mesa 13" itemValue="13" />
+									<f:selectItem itemLabel="Mesa 14" itemValue="14" />
+									<f:selectItem itemLabel="Mesa 15" itemValue="15" />
+									<f:selectItem itemLabel="Mesa 16" itemValue="16" />
+									<f:selectItem itemLabel="Mesa 17" itemValue="17" />
+									<f:selectItem itemLabel="Mesa 18" itemValue="18" />
+									<f:selectItem itemLabel="Mesa 19" itemValue="19" />
+									<f:selectItem itemLabel="Mesa 20" itemValue="20" />
+									<f:selectItem itemLabel="Mesa 21" itemValue="21" />
+									<f:selectItem itemLabel="Mesa 22" itemValue="22" />
+									<f:selectItem itemLabel="Mesa 23" itemValue="23" />
+									<f:selectItem itemLabel="Mesa 24" itemValue="24" />
+									<f:selectItem itemLabel="Mesa 25" itemValue="25" />
+									<f:selectItem itemLabel="Mesa 26" itemValue="26" />
+									<f:selectItem itemLabel="Mesa 27" itemValue="27" />
+									<f:selectItem itemLabel="Mesa 28" itemValue="28" />
+									<f:selectItem itemLabel="Mesa 29" itemValue="29" />
+									<f:selectItem itemLabel="Mesa 30" itemValue="30" />
+									<f:selectItem itemLabel="Mesa 31" itemValue="31" />
+									<f:selectItem itemLabel="Mesa 32" itemValue="32" />
+									<f:selectItem itemLabel="Mesa 33" itemValue="33" />
+									<f:selectItem itemLabel="Mesa 34" itemValue="34" />
+									<f:selectItem itemLabel="Mesa 35" itemValue="35" />
+									<f:selectItem itemLabel="Mesa 36" itemValue="36" />
+									<f:selectItem itemLabel="Mesa 37" itemValue="37" />
+									<f:selectItem itemLabel="Mesa 38" itemValue="38" />
+									<f:selectItem itemLabel="Mesa 39" itemValue="39" />
+									<f:selectItem itemLabel="Mesa 40" itemValue="40" />
+									<f:selectItem itemLabel="Mesa 41" itemValue="41" />
+									<f:selectItem itemLabel="Mesa 42" itemValue="42" />
+									<f:selectItem itemLabel="Mesa 43" itemValue="43" />
+									<f:selectItem itemLabel="Mesa 44" itemValue="44" />
+									<f:selectItem itemLabel="Mesa 45" itemValue="45" />
+									<f:selectItem itemLabel="Mesa 46" itemValue="46" />
+									<f:selectItem itemLabel="Mesa 47" itemValue="47" />
+									<f:selectItem itemLabel="Mesa 48" itemValue="48" />
+									<f:selectItem itemLabel="Mesa 49" itemValue="49" />
+									<f:selectItem itemLabel="Mesa 50" itemValue="50" />
+									<f:selectItem itemLabel="Mesa 51" itemValue="51" />
+									<f:selectItem itemLabel="Mesa 52" itemValue="52" />
+									<f:selectItem itemLabel="Mesa 53" itemValue="53" />
+									<f:selectItem itemLabel="Mesa 54" itemValue="54" />
+									<f:selectItem itemLabel="Mesa 55" itemValue="55" />
+									<f:selectItem itemLabel="Mesa 56" itemValue="56" />
+									<f:selectItem itemLabel="Mesa 57" itemValue="57" />
+									<f:selectItem itemLabel="Mesa 58" itemValue="58" />
+									<f:selectItem itemLabel="Mesa 59" itemValue="59" />
+									<f:selectItem itemLabel="Mesa 60" itemValue="60" />
+									<f:selectItem itemLabel="Mesa 61" itemValue="61" />
+									<f:selectItem itemLabel="Mesa 62" itemValue="62" />
+									<f:selectItem itemLabel="Mesa 63" itemValue="63" />
+									<f:selectItem itemLabel="Mesa 64" itemValue="64" />
+									<f:selectItem itemLabel="Mesa 65" itemValue="65" />
+									<f:selectItem itemLabel="Mesa 66" itemValue="66" />
+									<f:selectItem itemLabel="Mesa 67" itemValue="67" />
+									<f:selectItem itemLabel="Mesa 68" itemValue="68" />
+									<f:selectItem itemLabel="Mesa 69" itemValue="69" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:commandButton value="Lista Consumos"
+									action="#{cerrarMesaAction.cerrarMesa}" />
+
+							</p:column>
+						</p:row>
+						<f:facet name="footer">
+							<p:row>
+								<p:column> Cilantro Bar	</p:column>
+							</p:row>
+						</f:facet>
+					</p:panelGrid>
+
+
+
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</f:view>
+</body>
+</html>

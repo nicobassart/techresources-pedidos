@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<h:form>
+		<p:panelMenu>
+			<p:submenu label="Parametrias">
+				<p:menuitem value="Tragos" outcome="modParametriaTragos" icon="ui-icon-star" />
+				<p:menuitem value="Sistema" outcome="modParametria"	icon="ui-icon-star" />
+			</p:submenu>
+			<p:submenu label="Pantallas">
+				<p:menuitem value="Mesera 1" outcome="seleccionMesera1" target="blanck"	icon="ui-icon-extlink" />
+				<p:menuitem value="Mesera 2" outcome="seleccionMesera2"	target="blanck" icon="ui-icon-extlink" />
+				<p:menuitem value="Mesera 3" outcome="seleccionMesera3"	target="blanck" icon="ui-icon-extlink" />
+				<p:menuitem value="Barra" outcome="seleccionBarra"	target="blanck" icon="ui-icon-extlink" />
+			</p:submenu>
+			<p:submenu label="Administración">
+				<p:menuitem value="Cerrar Mesa" outcome="cerrarMesa" icon="ui-icon-star" />
+			</p:submenu>
+			<p:submenu label="Proyector">
+				<p:menuitem value="Tragos" outcome="pantalla" target="blanck" icon="ui-icon-extlink" />
+			</p:submenu>
+		</p:panelMenu>
+	</h:form>
+</body>
+
+</html>

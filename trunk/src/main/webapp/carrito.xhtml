@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<f:view>
+		<ui:composition template="/templateCarrito.xhtml">
+
+			<ui:define name="body">
+			
+					<!-- Shopping cart Modal -->
+		<div class="modal fade" id="shoppingcart1" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Tú compras</h4>
+					</div>
+					<div class="modal-body">
+						<!-- Items table -->
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Quantity</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a href="#">Exception Reins Evocative</a></td>
+									<td>2</td>
+									<td>$200</td>
+								</tr>
+								<tr>
+									<td><a href="#">Taut Mayoress Alias Appendicitis</a></td>
+									<td>1</td>
+									<td>$190</td>
+								</tr>
+								<tr>
+									<td><a href="#">Sinter et Molests Perfectionist</a></td>
+									<td>4</td>
+									<td>$99</td>
+								</tr>
+								<tr>
+									<th></th>
+									<th>Total</th>
+									<th>$489</th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Continuar Comprando</button>
+						<button type="button" class="btn btn-info">Comprar</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<!-- Model End -->
+		
+		<!-- Page Wrapper -->
+		<div class="wrapper">
+		
+			<!-- Header Start -->
+			
+			<div class="header">
+				<div class="container">
+					<!-- Header top area content -->
+					<div class="header-top">
+						<div class="row">
+							<div class="col-md-4 col-sm-4">
+							<!-- Link -->
+							<a href="index.html">
+								<!-- Logo area -->
+								<div class="logo">
+									<img class="img-responsive" src="imgs/logoEmpresa.png" alt="" />
+									<!-- Heading -->
+									<h1>Chiriloco</h1>
+									<!-- Paragraph -->
+									<p>Al alcance de tu mano</p>
+								</div>
+							</a>
+							</div>
+							<div class="col-md-4 col-sm-4">
+						<div class="col-md-4 col-sm-5">
+
+						</div>
+							</div>
+							<div class="col-md-4 col-sm-4">
+								<!-- Button Kart -->
+								<div class="btn-cart-md">
+									<a class="cart-link" href="#">
+										<!-- Image -->
+										<img class="img-responsive" src="imgs/cart.png" alt="" />
+										<!-- Heading -->
+										<h4>Tus Compras</h4>
+										<span>3 productos $489</span>
+										<div class="clearfix"></div>
+									</a>
+									<ul class="cart-dropdown" role="menu">
+										<li>
+											<!-- Cart items for shopping list -->
+											<div class="cart-item">
+												<!-- Item remove icon -->
+												<a href="#"><i class="fa fa-times"></i></a>
+												<!-- Image -->
+												<img class="img-responsive img-rounded" src="imgs/nav-menu/nav1.jpg" alt="" />
+												<!-- Title for purchase item -->
+												<span class="cart-title"><a href="#">Exception Reins Evocative</a></span>
+												<!-- Cart item price -->
+												<span class="cart-price pull-right red">$200/-</span>
+												<div class="clearfix"></div>
+											</div>
+										</li>
+										<li>
+											<!-- Cart items for shopping list -->
+											<div class="cart-item">
+												<!-- Item remove icon -->
+												<a href="#"><i class="fa fa-times"></i></a>
+												<!-- Image -->
+												<img class="img-responsive img-rounded" src="imgs/nav-menu/nav2.jpg" alt="" />
+												<!-- Title for purchase item -->
+												<span class="cart-title"><a href="#">Taut Mayoress Alias Appendicitis</a></span>
+												<!-- Cart item price -->
+												<span class="cart-price pull-right red">$190/-</span>
+												<div class="clearfix"></div>
+											</div>
+										</li>
+										<li>
+											<!-- Cart items for shopping list -->
+											<div class="cart-item">
+												<!-- Item remove icon -->
+												<a href="#"><i class="fa fa-times"></i></a>
+												<!-- Image -->
+												<img class="img-responsive img-rounded" src="imgs/nav-menu/nav3.jpg" alt="" />
+												<!-- Title for purchase item -->
+												<span class="cart-title"><a href="#">Sinter et Molests Perfectionist</a></span>
+												<!-- Cart item price -->
+												<span class="cart-price pull-right red">$99/-</span>
+												<div class="clearfix"></div>
+											</div>
+										</li>
+										<li>
+											<!-- Cart items for shopping list -->
+											<div class="cart-item">
+												<a class="btn btn-danger" data-toggle="modal" href="#shoppingcart1">Checkout</a>
+											</div>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+
+				</div> <!-- / .container -->
+			</div>
+			
+			<!-- Header End -->
+			
+			<!-- Inner Content -->
+			<div class="inner-page padd">
+				
+				<!-- Shopping Start -->
+				
+				<div class="shopping">
+					<div class="container">
+						<!-- Shopping items content -->
+						<div class="shopping-content">
+							<div class="row">
+								<div class="datalist-noborder">
+									<p:dataList var="user" value="#{tragoBean.listatragos}"  type="definition">
+										<div class="col-md-3 col-sm-6">
+											<!-- Shopping items -->
+											<div class="shopping-item">
+												<!-- Image -->
+												<a href="item-single.html"><img class="img-responsive" src="imgs/shopping/#{user.archivo}.jpg" alt="" /></a>
+												<!-- Shopping item name / Heading -->
+												<h4 class="pull-left"><a href="item-single.html"><h:outputText value="#{user.nombre}" /></a></h4>
+												<span class="item-price pull-right"><h:outputText value="#{user.precio}" /></span>
+												<div class="clearfix"></div>
+												<!-- Paragraph -->
+												<p><h:outputText value="#{user.descripcion}" /></p>
+												<!-- Buy now button -->
+												<div class="visible-xs">
+													<a class="btn btn-danger btn-sm" href="#">Comprar</a>
+												</div>
+												<!-- Shopping item hover block & link -->
+												<div class="item-hover br-red hidden-xs"></div>
+												<a class="link hidden-xs" href="#">Add to cart</a>
+											</div>
+										</div>
+											
+									</p:dataList>
+								</div>
+							</div>
+							<!-- Pagination -->
+							<div class="shopping-pagination">
+								<ul class="pagination">
+									<li class="disabled"><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+							</div>
+							<!-- Pagination end-->
+						</div>
+					</div>
+				</div>
+				
+				<!-- Shopping End -->
+				
+			</div><!-- / Inner Page Content End -->	
+			
+			<!-- Footer Start -->
+			
+			<div class="footer padd">
+				<div class="container">
+					<!-- Copyright -->
+					<div class="footer-copyright">
+						<i class="fa fa-envelope-o br-lblue"></i> <span><a href="#">contacto@techresources.com.ar</a></span>
+						<div class="clearfix"></div>
+						<p>&copy; Copyright 2015 <a href="#">TechResources</a></p>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Footer End -->
+			
+		</div><!-- / Wrapper End -->
+		
+		
+		<!-- Scroll to top -->
+		<span class="totop"><a href="#"><i class="fa fa-angle-up"></i></a></span> 
+		
+		
+		
+		<!-- Javascript files -->
+		<!-- jQuery -->
+		<!-- <script src="js/jquery.js"></script> -->
+		<h:outputScript library="js" name="jquery.js"  />
+		<!-- Bootstrap JS -->
+		<!-- <script src="js/bootstrap.min.js"></script> -->
+		<h:outputScript library="js" name="bootstrap.min.js"  />
+		<!-- Pretty Photo JS -->
+		<!-- <script src="js/jquery.prettyPhoto.js"></script> -->
+		<h:outputScript library="js" name="jquery.prettyPhoto.js"  />
+		<!-- Respond JS for IE8 -->
+		<!-- <script src="js/respond.min.js"></script> -->
+		<h:outputScript library="js" name="respond.min.js"  />
+		<!-- HTML5 Support for IE -->
+		<!-- <script src="js/html5shiv.js"></script> -->
+		<h:outputScript library="js" name="html5shiv.js"  />
+		<!-- Custom JS -->
+		<!-- <script src="js/custom.js"></script> -->
+		<h:outputScript library="js" name="custom.js"  />
+
+<style type="text/css">
+	.datalist-noborder .ui-widget-content {
+		border: none;
+	}
+</style>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<h:form>
+
+					<p:messages />
+
+					<p:panelGrid>
+						<f:facet name="header">
+							<p:row>
+								<p:column>Seleccionar una mesa a cerrar</p:column>
+							</p:row>
+
+						</f:facet>
+						<p:row>
+							<p:column>
+								<p:selectOneMenu value="#{cerrarMesaBean.idMesa}"
+									required="true">
+									<f:selectItem itemLabel="Seleccionar" itemValue="" />
+									<f:selectItem itemLabel="Mesa 1" itemValue="1" />
+									<f:selectItem itemLabel="Mesa 2" itemValue="2" />
+									<f:selectItem itemLabel="Mesa 3" itemValue="3" />
+									<f:selectItem itemLabel="Mesa 4" itemValue="4" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:commandButton value="Lista Consumos"
+									action="#{cerrarMesaAction.cerrarMesa}" />
+
+							</p:column>
+						</p:row>
+						<f:facet name="footer">
+							<p:row>
+								<p:column> Cilantro Bar	</p:column>
+							</p:row>
+						</f:facet>
+					</p:panelGrid>
+
+
+
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</f:view>
+</body>
+</html>

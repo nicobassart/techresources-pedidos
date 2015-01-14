@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Tragos - Mesera</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<h:form  >
+		<f:metadata>
+			<f:viewParam name="idMesa" value="#{tragoBean.idMesa}" />
+			<f:viewParam name="idMesera" value="#{tragoBean.idMesera}" />
+		</f:metadata>
+
+		<p:growl id="messages" showDetail="true" sticky="true" />
+		 
+ 		<h:inputHidden value="#{tragoBean.idMesa}" />
+ 		<h:inputHidden value="#{tragoBean.idMesera}" />
+ 		
+		<p:panel header="Seleccion de tragos Mesa N° #{tragoBean.idMesa} atiende #{tragoBean.idMesera} "
+			footer="Cilantro Bar" columns="1" cellpadding="20">
+			<p:dataTable var="user" value="#{tragoBean.listatragos}" styleColum="botonGenerico">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre" />
+					</f:facet>
+					<h:outputText value="#{user.nombre}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Precio" />
+					</f:facet>
+					<h:outputText value="#{user.precio}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Cantidad de bebidas" />
+					</f:facet>
+					<p:selectOneButton value="#{user.cantidad}" >
+						<f:selectItem itemLabel="0" itemValue="0" />
+						<f:selectItem itemLabel="1" itemValue="1" />
+						<f:selectItem itemLabel="2" itemValue="2" />
+						<f:selectItem itemLabel="3" itemValue="3" />
+						<f:selectItem itemLabel="4" itemValue="4" />
+						<f:selectItem itemLabel="5" itemValue="5" />
+					</p:selectOneButton>
+				</p:column>
+			</p:dataTable>
+			
+			<p:commandButton id="showDialogButton" value="Realizar Venta" onclick="confirmation.show()" ajax="true" styleClass="botonGenerico"/>
+			
+			<p:button outcome="seleccion#{tragoBean.idMesera}"	value="Volver" styleClass="botonGenerico" /> 
+		</p:panel>
+
+		<p:confirmDialog id="confirmDialog"
+			message="Desea confirmar la venta? Tenga en cuenta el precio de pizarra"
+			header="Confirmación de venta" severity="alert"
+			widgetVar="confirmation">
+
+			<p:commandButton id="confirm" value="Vender" update="messages"
+				oncomplete="confirmation.hide()"
+				action="#{ventaTragoAction.realizarVenta}" />
+
+			<p:commandButton id="decline" value="Cancelar"
+				onclick="confirmation.hide()" type="button" />
+
+		</p:confirmDialog>
+	</h:form>
+</h:body>
+
+</html>
