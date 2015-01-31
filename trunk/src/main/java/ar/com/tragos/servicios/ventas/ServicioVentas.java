@@ -86,7 +86,7 @@ public class ServicioVentas extends Servicios implements IServicioVentas{
 				}
 			}
 		}
-		servicioImpresion.imprimirTexto( "****    CILANTRO BAR    ****  " + sdf.format(Calendar.getInstance().getTime()) +"    ****\n"+ textoImpresion+"\n\n\n\n\n\n\n\n\n",idMesa);
+		//servicioImpresion.imprimirTexto( "****    CILANTRO BAR    ****  " + sdf.format(Calendar.getInstance().getTime()) +"    ****\n"+ textoImpresion+"\n\n\n\n\n\n\n\n\n",idMesa);
 	}
 	@Override
 	public void cerrarMesa(String idMesa) throws IOException {
