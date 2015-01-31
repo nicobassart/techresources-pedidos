@@ -51,16 +51,6 @@ public class TragoBean extends Bean {
 			listatragos.add(asd);
 		}
 	}
-	public void setAdd(){
-		System.out.println("asd");
-	}
-	public void getAdd(){
-		System.out.println("asd");
-	}
-	public void add(Trago unTrago){
-		System.out.println("Agregar Trago");
-		
-	}
 	public List<TragoView> getListatragos() {
 		return listatragos;
 	}
