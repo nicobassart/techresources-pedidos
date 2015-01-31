@@ -45,4 +45,8 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 
 		return "success"+tragoBean.getIdMesera();
 	}
+
+	public void agregarTragoCarrito() {
+		System.out.println("Vamos a agregar lo comprado al carrito");
+	}
 }
