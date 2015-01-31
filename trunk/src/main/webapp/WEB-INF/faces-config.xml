@@ -67,6 +67,16 @@
 		</navigation-case>
 	</navigation-rule>
 
+	<navigation-rule>
+		<from-view-id>/listarPedidos.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{listarPedidos.listaPedidos}</from-action>
+			<from-outcome>listarPedidos</from-outcome>
+			<to-view-id>/listarPedidos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
 	<application>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 	</application>

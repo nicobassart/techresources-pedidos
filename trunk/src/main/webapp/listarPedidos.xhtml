@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<f:view>
+		<ui:composition template="/template.xhtml">
+
+			<ui:define name="body">
+				<h:form>
+					<p:panelGrid>
+						<f:facet name="header">
+							<p:row>
+								<p:column>Esta a punto de cerrar una mesa MESA NRO #{cerrarMesaBean.idMesa}</p:column>
+							</p:row>
+
+						</f:facet>
+						<p:row>
+							<p:column>
+								<p:dataTable var="venta" value="#{cerrarMesaBean.listaConsumos}"
+									style="width: 10%">
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Nombre Trago" />
+										</f:facet>
+										<h:outputText value="#{venta.nombreTrago}" />
+									</p:column>
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Precio" />
+										</f:facet>
+										<h:outputText value="#{venta.precio}" />
+									</p:column>
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Cantidad" />
+										</f:facet>
+										<h:outputText value="#{venta.cantidad}" />
+									</p:column>
+								</p:dataTable>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText
+									value=" Total de consumido: #{cerrarMesaBean.totalConsumos}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column colspan="2">
+								<p:commandButton
+									action="#{cerrarMesaAction.cerrarMesaSeleccionada}"
+									value="Cerrar Mesa" ajax="false" styleClass="botonGenerico" />
+
+								<p:button outcome="cerrarMesa" value="Volver"
+									styleClass="botonGenerico" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</f:view>
+</body>
+</html>
