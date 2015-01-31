@@ -24,43 +24,39 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title">Tú compras</h4>
 					</div>
-					<div class="modal-body">
-						<!-- Items table -->
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Quantity</th>
-									<th>Price</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><a href="#">Exception Reins Evocative</a></td>
-									<td>2</td>
-									<td>$200</td>
-								</tr>
-								<tr>
-									<td><a href="#">Taut Mayoress Alias Appendicitis</a></td>
-									<td>1</td>
-									<td>$190</td>
-								</tr>
-								<tr>
-									<td><a href="#">Sinter et Molests Perfectionist</a></td>
-									<td>4</td>
-									<td>$99</td>
-								</tr>
-								<tr>
-									<th></th>
-									<th>Total</th>
-									<th>$489</th>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+					<h:panelGroup id="prueba2">
+						<div class="modal-body">
+							<!-- Items table -->
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Nombre</th>
+										<th>Cantidad</th>
+										<th>Precio</th>
+									</tr>
+								</thead>
+									<tbody>
+									
+										   <c:forEach var="item" items="#{tragoBean.listatragos}">
+										   		<c:if test="${item.cantidad > 0}">
+													<tr>
+														<td><a href="#"></a>#{item.nombre}</td>
+														<td>#{item.cantidad}</td>
+														<td>$#{item.precio}</td>
+													</tr>
+												</c:if>
+											</c:forEach>
+										
+											<th></th>
+											<th>Total</th>
+											<th>$ #{0}</th>
+									</tbody>
+							</table>
+						</div>
+					</h:panelGroup>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Continuar Comprando</button>
-						<button type="button" class="btn btn-info">Comprar</button>
+						<button type="button" class="btn btn-info">Finalizar Compra</button>
 						
 					</div>
 				</div><!-- /.modal-content -->
@@ -101,7 +97,7 @@
 								<!-- Button Kart -->
 								<div class="btn-cart-md" id="prueba">
 									<h:outputLink class="cart-link" href="#">
-									 <f:ajax execute="@form" event="click" immediate="true" render="prueba1" > </f:ajax>
+									 <f:ajax execute="@form" event="click" immediate="true" render="prueba1 prueba2" > </f:ajax>
 										<!-- Image -->
 										<img class="img-responsive" src="imgs/cart.png" alt="" />
 										<!-- Heading -->
@@ -138,7 +134,7 @@
 										<li>
 											<!-- Cart items for shopping list -->
 											<div class="cart-item">
-												<a class="btn btn-danger" data-toggle="modal" href="#shoppingcart1">Checkout</a>
+												<a class="btn btn-danger" data-toggle="modal" href="#shoppingcart1">Comprar</a>
 											</div>
 										</li>
 									</ul>
