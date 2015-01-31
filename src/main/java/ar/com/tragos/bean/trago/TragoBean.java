@@ -26,7 +26,7 @@ public class TragoBean extends Bean {
 	private String idMesera;
 	private String idMesa;
 	private List<TragoView> listatragos = new ArrayList<TragoView>();
-	private List<TragoView> tragosSeleccionados = new ArrayList<TragoView>();
+
 
 	@Autowired
 	ITragosDao tragos;
@@ -115,12 +115,5 @@ public class TragoBean extends Bean {
 		this.idMesera = idMesera;
 	}
 
-	public List<TragoView> getTragosSeleccionados() {
-		return tragosSeleccionados;
-	}
-
-	public void setTragosSeleccionados(List<TragoView> tragosSeleccionados) {
-		this.tragosSeleccionados = tragosSeleccionados;
-	}
 	
 }
