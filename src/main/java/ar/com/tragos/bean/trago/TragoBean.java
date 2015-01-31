@@ -26,6 +26,7 @@ public class TragoBean extends Bean {
 	private String idMesera;
 	private String idMesa;
 	private List<TragoView> listatragos = new ArrayList<TragoView>();
+	private List<TragoView> tragosSeleccionados = new ArrayList<TragoView>();
 
 	@Autowired
 	ITragosDao tragos;
@@ -50,7 +51,16 @@ public class TragoBean extends Bean {
 			listatragos.add(asd);
 		}
 	}
-
+	public void setAdd(){
+		System.out.println("asd");
+	}
+	public void getAdd(){
+		System.out.println("asd");
+	}
+	public void add(Trago unTrago){
+		System.out.println("Agregar Trago");
+		
+	}
 	public List<TragoView> getListatragos() {
 		return listatragos;
 	}
@@ -103,6 +113,14 @@ public class TragoBean extends Bean {
 	}
 	public void setIdMesera(String idMesera) {
 		this.idMesera = idMesera;
+	}
+
+	public List<TragoView> getTragosSeleccionados() {
+		return tragosSeleccionados;
+	}
+
+	public void setTragosSeleccionados(List<TragoView> tragosSeleccionados) {
+		this.tragosSeleccionados = tragosSeleccionados;
 	}
 	
 }
