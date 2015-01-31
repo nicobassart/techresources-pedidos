@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
@@ -143,48 +144,24 @@
 										<div class="clearfix"></div>
 									</a>
 									<ul class="cart-dropdown" role="menu">
-										<li>
-											<!-- Cart items for shopping list -->
-											<div class="cart-item">
-												<!-- Item remove icon -->
-												<a href="#"><i class="fa fa-times"></i></a>
-												<!-- Image -->
-												<img class="img-responsive img-rounded" src="imgs/nav-menu/nav1.jpg" alt="" />
-												<!-- Title for purchase item -->
-												<span class="cart-title"><a href="#">Exception Reins Evocative</a></span>
-												<!-- Cart item price -->
-												<span class="cart-price pull-right red">$200/-</span>
-												<div class="clearfix"></div>
-											</div>
-										</li>
-										<li>
-											<!-- Cart items for shopping list -->
-											<div class="cart-item">
-												<!-- Item remove icon -->
-												<a href="#"><i class="fa fa-times"></i></a>
-												<!-- Image -->
-												<img class="img-responsive img-rounded" src="imgs/nav-menu/nav2.jpg" alt="" />
-												<!-- Title for purchase item -->
-												<span class="cart-title"><a href="#">Taut Mayoress Alias Appendicitis</a></span>
-												<!-- Cart item price -->
-												<span class="cart-price pull-right red">$190/-</span>
-												<div class="clearfix"></div>
-											</div>
-										</li>
-										<li>
-											<!-- Cart items for shopping list -->
-											<div class="cart-item">
-												<!-- Item remove icon -->
-												<a href="#"><i class="fa fa-times"></i></a>
-												<!-- Image -->
-												<img class="img-responsive img-rounded" src="imgs/nav-menu/nav3.jpg" alt="" />
-												<!-- Title for purchase item -->
-												<span class="cart-title"><a href="#">Sinter et Molests Perfectionist</a></span>
-												<!-- Cart item price -->
-												<span class="cart-price pull-right red">$99/-</span>
-												<div class="clearfix"></div>
-											</div>
-										</li>
+									   <c:forEach var="item" items="#{tragoBean.listatragos}">
+									    	<c:if test="${item.cantidad > 0}">
+												<li>
+													<!-- Cart items for shopping list -->
+													<div class="cart-item">
+														<!-- Item remove icon -->
+														<a href="#"><i class="fa fa-times"></i></a>
+														<!-- Image -->
+														<img class="img-responsive img-rounded" src="imgs/nav-menu/nav1.jpg" alt="" />
+														<!-- Title for purchase item -->
+														<span class="cart-title"><a href="#">#{item.nombre}</a></span>
+														<!-- Cart item price -->
+														<span class="cart-price pull-right red">#{item.precio}</span>
+														<div class="clearfix"></div>
+													</div>
+												</li>
+											</c:if>
+										</c:forEach>
 										<li>
 											<!-- Cart items for shopping list -->
 											<div class="cart-item">
