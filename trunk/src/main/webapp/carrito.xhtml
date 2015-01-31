@@ -13,44 +13,7 @@
 
 			<ui:define name="body">
 						
-				<h:form>
-
-					<p:messages />
-					
-					<p:commandButton value="Comprar" action="#{tragoBean.add}" ajax="true" styleClass="btn btn-danger btn-sm"/>
-					
-					 					<p:panelGrid>
-						<f:facet name="header">
-							<p:row>
-								<p:column>Seleccionar una mesa a cerrar</p:column>
-							</p:row>
-
-						</f:facet>
-						<p:row>
-							<p:column>
-								<p:selectOneMenu value="#{cerrarMesaBean.idMesa}"
-									required="true">
-									<f:selectItem itemLabel="Seleccionar" itemValue="" />
-									<f:selectItem itemLabel="Mesa 1" itemValue="1" />
-									<f:selectItem itemLabel="Mesa 2" itemValue="2" />
-									<f:selectItem itemLabel="Mesa 3" itemValue="3" />
-									<f:selectItem itemLabel="Mesa 4" itemValue="4" />
-								</p:selectOneMenu>
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column>
-								<p:commandButton value="Lista Consumos"
-									action="#{cerrarMesaAction.cerrarMesa}" />
-
-							</p:column>
-						</p:row>
-						<f:facet name="footer">
-							<p:row>
-								<p:column> Cilantro Bar	</p:column>
-							</p:row>
-						</f:facet>
-					</p:panelGrid>
+				<h:form id="form" >
 					
 					
 					<!-- Shopping cart Modal -->
@@ -98,6 +61,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Continuar Comprando</button>
 						<button type="button" class="btn btn-info">Comprar</button>
+						
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
@@ -132,18 +96,26 @@
 
 						</div>
 							</div>
+
 							<div class="col-md-4 col-sm-4">
 								<!-- Button Kart -->
-								<div class="btn-cart-md">
-									<a class="cart-link" href="#">
+								<div class="btn-cart-md" id="prueba">
+									<h:outputLink class="cart-link" href="#">
+									 <f:ajax execute="@form" event="click" immediate="true" render="prueba1" > </f:ajax>
 										<!-- Image -->
 										<img class="img-responsive" src="imgs/cart.png" alt="" />
 										<!-- Heading -->
 										<h4>Tus Compras</h4>
 										<span>3 productos $489</span>
 										<div class="clearfix"></div>
-									</a>
-									<ul class="cart-dropdown" role="menu">
+									</h:outputLink>
+									<ul class="cart-dropdown" role="menu" >
+<!-- 									<p:panel id="red"  >
+									<p:dataList var="user" value="#{tragoBean.listatragos}"  type="definition">
+										<h:inputText value="#{user.cantidad}" />
+									</p:dataList>
+									</p:panel> -->
+																<h:panelGroup id="prueba1">
 									   <c:forEach var="item" items="#{tragoBean.listatragos}">
 									    	<c:if test="${item.cantidad > 0}">
 												<li>
@@ -162,6 +134,7 @@
 												</li>
 											</c:if>
 										</c:forEach>
+							</h:panelGroup>
 										<li>
 											<!-- Cart items for shopping list -->
 											<div class="cart-item">
@@ -191,8 +164,8 @@
 						<!-- Shopping items content -->
 						<div class="shopping-content">
 							<div class="row">
-								<div class="datalist-noborder">
-									<p:dataList var="user" value="#{tragoBean.listatragos}"  type="definition">
+								<div class="datalist-noborder" >
+									<p:dataList var="user" id="listaTragos" value="#{tragoBean.listatragos}" rowIndexVar="rowIndex"  type="definition">
 										<div class="col-md-3 col-sm-6">
 											<!-- Shopping items -->
 											<div class="shopping-item">
@@ -206,13 +179,14 @@
 												<p><h:outputText value="#{user.descripcion}" /></p>
 												<!-- Buy now button -->
 												<div class="visible-xs">
-													<!-- <a class="btn btn-danger btn-sm" href="#"></a> -->
-													<p:commandButton value="Comprar" action="#{tragoBean.add}" ajax="true" styleClass="btn btn-danger btn-sm"/>
+													
+													<a class="btn btn-danger btn-sm"  href="#"  onclick="$('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  )" >Agregar</a>
 												</div>
 												<!-- Shopping item hover block & link -->
 												<div class="item-hover br-red hidden-xs"></div>
-												<!-- <a class="link hidden-xs" href="#">Comprar</a> -->
-												<p:commandButton value="Comprar" action="#{tragoBean.add}" ajax="true" styleClass="btn btn-danger btn-sm"/>
+												<a class="link hidden-xs" href="#"  onclick="$('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  )" >Agregar</a>
+												<h:inputHidden id="cantidad" value="#{user.cantidad}"    />
+													
 											</div>
 										</div>
 											
@@ -260,8 +234,7 @@
 		
 		<!-- Scroll to top -->
 		<span class="totop"><a href="#"><i class="fa fa-angle-up"></i></a></span> 
-		
-		
+	
 		
 		<!-- Javascript files -->
 		<!-- jQuery -->
@@ -287,12 +260,8 @@
 	.datalist-noborder .ui-widget-content {
 		border: none;
 	}
+	
 </style>
-			
-			
-			
-			
-			
 			
 			
 			
