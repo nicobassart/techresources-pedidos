@@ -1,4 +1,4 @@
-package ar.com.tragos.servicios.dao.ventas;
+package ar.com.tragos.servicios.dao.clientes;
 
 import java.util.Calendar;
 import java.util.List;
@@ -16,11 +16,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import ar.com.tragos.entity.Clientes;
 import ar.com.tragos.entity.Ventas;
 import ar.com.tragos.servicios.dao.tragos.ITragosDao;
 
 @Service
-public class VentasDao implements IVentasDao{
+public class ClientesDao implements IClientesDao{
 	
 	@PersistenceContext
 	EntityManager em;
@@ -29,7 +30,7 @@ public class VentasDao implements IVentasDao{
 	ITragosDao tragos;
 	
 	@Transactional
-	public void insertarVenta(String nombreTrago, int idMesa, float precioCompra, int cantidad, int idCliente) {
+	public void insertarVenta(String nombreTrago, int idMesa, float precioCompra, int cantidad) {
 		Ventas unaVenta = new Ventas();
 		unaVenta.setIdmesa(idMesa);
 		unaVenta.setNombreTrago(nombreTrago);
@@ -37,7 +38,6 @@ public class VentasDao implements IVentasDao{
 		unaVenta.setCantidad(cantidad);
 		unaVenta.setDt_venta(Calendar.getInstance().getTime());
 		unaVenta.setCobrado(false);
-		unaVenta.setIdCliente(idCliente);
 		em.persist(unaVenta);
 	}
 
@@ -81,5 +81,24 @@ public class VentasDao implements IVentasDao{
 		catch (NoResultException e) {
 			System.out.println("No hay resultados para el consumo de la mesa nro " + idMesa);
 		}
+	}
+
+	@Override
+	@Transactional
+	public int registrarCliente(String email, String telefono) {
+		Clientes unaVenta = new Clientes();
+		unaVenta.setEmail(email);
+		unaVenta.setTelefono(telefono);
+		em.persist(unaVenta);
+		return unaVenta.getIdCliente();
+	}
+
+	@Override
+	@Bean
+	@Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.INTERFACES)
+	@SuppressWarnings("unchecked")
+	public List<Clientes> consultarClientes() {
+		List<Clientes> resultList = em.createQuery("from Clientes").getResultList();
+		return resultList;
 	}
 }

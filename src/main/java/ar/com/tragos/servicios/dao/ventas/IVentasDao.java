@@ -6,7 +6,7 @@ import ar.com.tragos.entity.Ventas;
 
 public interface IVentasDao {
 	public List<Ventas> getVentas();
-	public void insertarVenta(String nombreTrago, int idMesa, float precioCompra, int cantidad);
+	public void insertarVenta(String nombreTrago, int idMesa, float precioCompra, int cantidad,int idCliente);
 	public List<Ventas> getVentasUnaMesa(int idMesa);
 	public void cerrarMesa(int idMesa);
 }

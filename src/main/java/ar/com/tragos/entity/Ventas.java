@@ -29,7 +29,15 @@ public class Ventas implements Serializable {
 	@Basic
 	private boolean cobrado;
 	
+	private int idCliente;
 	
+	
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
 	public boolean isCobrado() {
 		return cobrado;
 	}

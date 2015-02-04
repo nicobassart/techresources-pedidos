@@ -10,4 +10,6 @@ public interface IServicioVentas {
 	public List<Ventas> getVentas();
 	public void registrarVenta(List<TragoView> listaTragos, int idMesa) throws IOException;
 	public void cerrarMesa(String idMesa) throws IOException;
+	public void registrarVentaOnLine(List<TragoView> listatragos,
+			int idMesaInt, String email, String telefono);
 }

@@ -17,6 +17,7 @@ import ar.com.tragos.entity.Trago;
 import ar.com.tragos.entity.Ventas;
 import ar.com.tragos.enums.Estado;
 import ar.com.tragos.servicios.Servicios;
+import ar.com.tragos.servicios.dao.clientes.IClientesDao;
 import ar.com.tragos.servicios.dao.parametria.IParametriaDao;
 import ar.com.tragos.servicios.dao.tragos.ITragosDao;
 import ar.com.tragos.servicios.dao.ventas.IVentasDao;
@@ -38,6 +39,9 @@ public class ServicioVentas extends Servicios implements IServicioVentas{
 
 	@Autowired
 	IVentasDao ventas;
+
+	@Autowired
+	IClientesDao clientes;
 	
 	@Autowired
 	ITragosDao tragos;
@@ -79,7 +83,8 @@ public class ServicioVentas extends Servicios implements IServicioVentas{
 						unTrago.setEstado(Estado.MAXIMO);
 					}
 					tragos.update(unTrago);
-					ventas.insertarVenta(unTrago.getNombre(),idMesa,precioCompra,tragoView.getCantidadInt());
+					
+					ventas.insertarVenta(unTrago.getNombre(),idMesa,precioCompra,tragoView.getCantidadInt(),0);
 					textoImpresion +=  unTrago.getNombre().toUpperCase() + "  "+ tragoView.getCantidadInt() + "  p/u $"+ unTrago.getPrecio()+"   $" + precioCompra * tragoView.getCantidadInt() +"\n";
 				}else{
 					textoImpresion +=  unTrago.getNombre().toUpperCase() + "  trago en quiebra \n"; 
@@ -100,6 +105,32 @@ public class ServicioVentas extends Servicios implements IServicioVentas{
 		textoImpresion +=  "CONSUMO TOTAL DE LA MESA:....$" + consumoTotal + "\n";
 		servicioImpresion.imprimirTexto( "****    CILANTRO BAR    ****  " + sdf.format(Calendar.getInstance().getTime()) +"    ****\n"+ textoImpresion+"\n\n\n\n\n\n\n\n\n",parseInt );
 		ventas.cerrarMesa(parseInt);
+	}
+
+	@Override
+	public void registrarVentaOnLine(List<TragoView> listatragos,
+			int idMesaInt, String email, String telefono) {
+		//Vamos a registrar el cliente
+		int idCliente = clientes.registrarCliente(email, telefono);
+		
+		float precioCompra=0;
+		String textoImpresion="CONSUMO MESA NRO " + idMesaInt +"\n";
+		for (TragoView tragoView : listatragos) {
+			if(tragoView.getCantidad()!=null && tragoView.getCantidadInt() > 0){
+				Parametria paramIncremento =  parametria.getParametro(MONTO_INCREMENTO);
+				Trago unTrago = tragos.obtenerUnTrago(tragoView.getIdtragos());
+				precioCompra = unTrago.getPrecio();
+				
+
+				
+				//Vamos a registrar la venta o el pedido, 
+				//quizas no todos los pedidos se transforman en ventas. pero despues lo veremos.
+				ventas.insertarVenta(unTrago.getNombre(),idMesaInt,precioCompra,tragoView.getCantidadInt(),idCliente);
+				textoImpresion +=  unTrago.getNombre().toUpperCase() + "  "+ tragoView.getCantidadInt() + "  p/u $"+ unTrago.getPrecio()+"   $" + precioCompra * tragoView.getCantidadInt() +"\n";
+			}
+		}
+		//servicioImpresion.imprimirTexto( "****    CILANTRO BAR    ****  " + sdf.format(Calendar.getInstance().getTime()) +"    ****\n"+ textoImpresion+"\n\n\n\n\n\n\n\n\n",idMesa);
+		
 	}
 
 }

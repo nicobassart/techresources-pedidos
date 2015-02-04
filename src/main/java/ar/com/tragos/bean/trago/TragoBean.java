@@ -25,6 +25,8 @@ public class TragoBean extends Bean {
 
 	private String idMesera;
 	private String idMesa;
+	private String email;
+	private String telefono; 
 	private List<TragoView> listatragos = new ArrayList<TragoView>();
 
 
@@ -103,6 +105,18 @@ public class TragoBean extends Bean {
 	}
 	public void setIdMesera(String idMesera) {
 		this.idMesera = idMesera;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	
