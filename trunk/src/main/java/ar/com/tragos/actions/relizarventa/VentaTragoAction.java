@@ -35,13 +35,16 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 	        return "error";
 		}
 		
-		try {
-			servicioVentas.registrarVenta(tragoBean.getListatragos(),tragoBean.getIdMesaInt());
-		} catch (IOException e) {
-	        FacesMessage msg = new FacesMessage("Ocurrio un error",e.toString());  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);  
-	        return "";
-		}
+//		try {
+//			//Servicio para resolver el envio de emial o SMS.
+//			//servicioInformar.informarVenta();
+			
+			servicioVentas.registrarVentaOnLine(tragoBean.getListatragos(),tragoBean.getIdMesaInt(),tragoBean.getEmail(),tragoBean.getTelefono());
+//		} catch (IOException e) {
+//	        FacesMessage msg = new FacesMessage("Ocurrio un error",e.toString());  
+//	        FacesContext.getCurrentInstance().addMessage(null, msg);  
+//	        return "";
+//		}
 
 		return "success"+tragoBean.getIdMesera();
 	}
