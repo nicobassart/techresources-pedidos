@@ -41,7 +41,7 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 //			//Servicio para resolver el envio de emial o SMS.
 //			//servicioInformar.informarVenta();
 
-			servicioMail.send(tragoBean.getEmail(), "Tu hermana", "Estamos mejorando el servicio");
+			servicioMail.send(tragoBean.getEmail(), "Solicitud de Pedido", "Los siguientes pedidos:");
 			servicioVentas.registrarVentaOnLine(tragoBean.getListatragos(),tragoBean.getIdMesaInt(),tragoBean.getEmail(),tragoBean.getTelefono());
 //		} catch (IOException e) {
 //	        FacesMessage msg = new FacesMessage("Ocurrio un error",e.toString());  
