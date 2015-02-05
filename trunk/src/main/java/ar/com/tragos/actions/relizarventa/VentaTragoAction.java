@@ -1,7 +1,5 @@
 package ar.com.tragos.actions.relizarventa;
 
-import java.io.IOException;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -12,6 +10,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import ar.com.tragos.actions.Action;
 import ar.com.tragos.bean.trago.TragoBean;
+import ar.com.tragos.servicios.mail.IServicioMail;
 import ar.com.tragos.servicios.ventas.IServicioVentas;
 
 @Controller
@@ -25,6 +24,9 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 	
 	@Autowired
 	private IServicioVentas servicioVentas;
+
+	@Autowired
+	private IServicioMail servicioMail;
 		
 	public String realizarVenta() {
 		if(!tragoBean.validarLista()){
@@ -38,7 +40,8 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 //		try {
 //			//Servicio para resolver el envio de emial o SMS.
 //			//servicioInformar.informarVenta();
-			
+
+			servicioMail.send(tragoBean.getEmail(), "Tu hermana", "Estamos mejorando el servicio");
 			servicioVentas.registrarVentaOnLine(tragoBean.getListatragos(),tragoBean.getIdMesaInt(),tragoBean.getEmail(),tragoBean.getTelefono());
 //		} catch (IOException e) {
 //	        FacesMessage msg = new FacesMessage("Ocurrio un error",e.toString());  
