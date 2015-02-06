@@ -139,7 +139,7 @@
 														<img class="img-responsive" src="imgs/cart.png" alt="" />
 														<!-- Heading -->
 														<h4>Tus Compras</h4>
-														<span>#{tragoBean.cantidadProductos()} productos $#{tragoBean.getTotalCompra()}</span>
+														<span > Productos: <label id="cantProd">0</label> $ <label id="cantDinero">0</label> </span>
 														<div class="clearfix"></div>
 													</h:outputLink>
 									
@@ -221,7 +221,7 @@
 																
 															<!-- Shopping item hover block & link -->
 															<div class="item-hover br-red hidden-xs"></div>
-																	<a class="link hidden-xs" href="#"  onclick="$('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  )" >Agregar</a>
+																	<a class="link hidden-xs" href="#"  onclick="$('#cantDinero').text( parseFloat($('#cantDinero').text()) + #{user.precio} );$('#cantProd').text( parseInt($('#cantProd').text()) + 1); $('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  )" >Agregar</a>
 															<h:inputHidden id="cantidad" value="#{user.cantidad}"    />
 														</div>
 
@@ -298,6 +298,13 @@
 						}
 						
 					</style>
+					
+					<script type="text/javascript">
+					<!--
+					
+					//-->
+					</script>
+					
 
 				</h:form>
 			</ui:define>
