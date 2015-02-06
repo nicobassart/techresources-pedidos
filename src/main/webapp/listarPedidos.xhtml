@@ -15,36 +15,36 @@
 					<p:panelGrid>
 						<f:facet name="header">
 							<p:row>
-								<p:column>Esta a punto de cerrar una mesa MESA NRO #{cerrarMesaBean.idMesa}</p:column>
+								<p:column>Listado de pedidos On Line</p:column>
 							</p:row>
-
 						</f:facet>
 						<p:row>
 							<p:column>
-								<p:dataTable var="venta" value="#{cerrarMesaBean.listaConsumos}"
-									style="width: 10%">
+								<p:dataTable var="pedido" value="#{listarPedidosBean.ventasOnLine}" style="width: 100%">
 									<p:column>
 										<f:facet name="header">
 											<h:outputText value="Nombre Trago" />
 										</f:facet>
-										<h:outputText value="#{venta.nombreTrago}" />
+										<h:outputText value="#{pedido.nombreTrago}" />
 									</p:column>
 									<p:column>
 										<f:facet name="header">
 											<h:outputText value="Precio" />
 										</f:facet>
-										<h:outputText value="#{venta.precio}" />
+										<h:outputText value="#{pedido.ventas.precio}" />
 									</p:column>
 									<p:column>
 										<f:facet name="header">
 											<h:outputText value="Cantidad" />
 										</f:facet>
-										<h:outputText value="#{venta.cantidad}" />
+										<h:outputText value="#{pedido.ventas.cantidad}" />
 									</p:column>
 								</p:dataTable>
 							</p:column>
 						</p:row>
-						<p:row>
+
+
+<!-- 						<p:row>
 							<p:column>
 								<h:outputText
 									value=" Total de consumido: #{cerrarMesaBean.totalConsumos}" />
@@ -60,7 +60,7 @@
 									styleClass="botonGenerico" />
 							</p:column>
 						</p:row>
-					</p:panelGrid>
+ -->					</p:panelGrid>
 				</h:form>
 			</ui:define>
 		</ui:composition>

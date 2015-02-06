@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import ar.com.tragos.entity.Ventas;
+import ar.com.tragos.pojos.VentasOnLine;
 import ar.com.tragos.servicios.dao.tragos.ITragosDao;
 
 @Service
@@ -81,5 +82,14 @@ public class VentasDao implements IVentasDao{
 		catch (NoResultException e) {
 			System.out.println("No hay resultados para el consumo de la mesa nro " + idMesa);
 		}
+	}
+	
+	@Bean
+	@Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.INTERFACES)
+	@SuppressWarnings("unchecked")
+	public List<VentasOnLine> getVentasOnLine() {
+
+		List<VentasOnLine> resultList = em.createQuery("from Ventas v, Clientes c  where v.idCliente =  c.idCliente").getResultList();
+		return resultList;
 	}
 }
