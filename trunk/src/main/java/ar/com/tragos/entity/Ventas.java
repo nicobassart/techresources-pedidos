@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +31,9 @@ public class Ventas implements Serializable {
 	@Basic
 	private boolean cobrado;
 	
+//	@ManyToOne
+//    @JoinColumn(name="idCliente")
+//	private Clientes persona;
 	private int idCliente;
 	
 	
