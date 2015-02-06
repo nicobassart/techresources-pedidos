@@ -11,7 +11,7 @@
 	<f:view>
 		<ui:composition template="/templateCarrito.xhtml">
 
-			<ui:define name="body">
+			<ui:define name="body" >
 						
 				<h:form id="form" >
 					
@@ -49,7 +49,7 @@
 													
 														<th></th>
 														<th>Total</th>
-														<th>$ #{0}</th>
+														<th>$ #{tragoBean.getTotalCompra()}</th>
 												</tbody>
 										</table>
 										<p>Telefono:</p>
@@ -77,7 +77,7 @@
 					
 						<!-- Header Start -->
 						
-						<div class="header">
+						<div class="header" style="height: 152px;">
 							<div class="container">
 								<!-- Header top area content -->
 								<div class="header-top">
@@ -85,10 +85,10 @@
 									<div class="row">
 										<div class="col-md-4 col-sm-4">
 											<!-- Header top left content contact -->
-											<div class="header-contact">
-												<!-- Contact number -->
-												<span><i class="fa fa-phone red"></i> 888-888-8888</span>
-											</div>
+<!-- 											<div class="header-contact" > -->
+											
+<!-- 												<span><i class="fa fa-phone red"></i> 888-888-8888</span> -->
+<!-- 											</div> -->
 										</div>
 <!-- 										<div class="col-md-4 col-sm-4">
 											Header top right content search box
@@ -109,33 +109,40 @@
 										<!-- Link -->
 										<a href="index.html">
 											<!-- Logo area -->
-											<div class="logo">
-												<img class="img-responsive" src="imgs/logoEmpresa.png" alt="" />
+											<div>	<!-- >div class="logo"-->
+												<img class="img-responsive" src="imgs/logoEmpresa.png" alt=""/>
 												<!-- Heading -->
-												<h1>Chiriloco</h1>
+												<!--  >h1>Chiriloco</h1-->
 												<!-- Paragraph -->
-												<p>Al alcance de tu mano</p>
+												<!-->p>Al alcance de tu mano</p-->
 											</div>
 										</a>
 										</div>
-										<div class="col-md-4 col-sm-4">
-									<div class="col-md-4 col-sm-5">
-			
-									</div>
+										<div class="col-md-4 col-sm-4" >
+											<!-- Header top left content contact -->
+											<div class="header-contact" >
+												<!-- Contact number -->
+												<br /><br />
+												<span><i class="fa fa-phone red"></i> 888-888-8888</span>
+											</div>
 										</div>
-			
+									
 										<div class="col-md-4 col-sm-4">
 											<!-- Button Kart -->
+											
 											<div class="btn-cart-md" id="prueba">
-												<h:outputLink class="cart-link" href="#">
-												 <f:ajax execute="@form" event="click" immediate="true" render="prueba1 prueba2" > </f:ajax>
-													<!-- Image -->
-													<img class="img-responsive" src="imgs/cart.png" alt="" />
-													<!-- Heading -->
-													<h4>Tus Compras</h4>
-													<span>3 productos $489</span>
-													<div class="clearfix"></div>
-												</h:outputLink>
+											<br /><br />
+											
+													<h:outputLink class="cart-link" href="#">
+													 <f:ajax execute="@form" event="click" immediate="true" render="prueba1 prueba2" > </f:ajax>
+														<!-- Image -->
+														<img class="img-responsive" src="imgs/cart.png" alt="" />
+														<!-- Heading -->
+														<h4>Tus Compras</h4>
+														<span>#{tragoBean.cantidadProductos()} productos $#{tragoBean.getTotalCompra()}</span>
+														<div class="clearfix"></div>
+													</h:outputLink>
+									
 												<ul class="cart-dropdown" role="menu" >
 				<!-- 									<p:panel id="red"  >
 													<p:dataList var="user" value="#{tragoBean.listatragos}"  type="definition">
@@ -195,7 +202,9 @@
 												<p:dataList var="user" id="listaTragos" value="#{tragoBean.listatragos}" rowIndexVar="rowIndex"  type="definition">
 													<div class="col-md-3 col-sm-6">
 														<!-- Shopping items -->
+														
 														<div class="shopping-item">
+													 		
 															<!-- Image -->
 															<a href="item-single.html"><img class="img-responsive" src="imgs/shopping/#{user.archivo}.jpg" alt="" /></a>
 															<!-- Shopping item name / Heading -->
@@ -205,15 +214,17 @@
 															<!-- Paragraph -->
 															<p><h:outputText value="#{user.descripcion}" /></p>
 															<!-- Buy now button -->
+																
 															<div class="visible-xs">
-																<a class="btn btn-danger btn-sm"  href="#"  onclick="$('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  )" >Agregar</a>
+																	<a class="btn btn-danger btn-sm"  href="#"  onclick="$('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  )" >Agregar</a>
 															</div>
+																
 															<!-- Shopping item hover block & link -->
 															<div class="item-hover br-red hidden-xs"></div>
-															<a class="link hidden-xs" href="#"  onclick="$('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  )" >Agregar</a>
+																	<a class="link hidden-xs" href="#"  onclick="$('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  )" >Agregar</a>
 															<h:inputHidden id="cantidad" value="#{user.cantidad}"    />
-																
 														</div>
+
 													</div>
 														
 												</p:dataList>

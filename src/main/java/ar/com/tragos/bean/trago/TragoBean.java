@@ -32,7 +32,9 @@ public class TragoBean extends Bean {
 
 	@Autowired
 	ITragosDao tragos;
-
+    
+	
+	
 	@Autowired
 	IParametriaDao parametria;
 
@@ -118,6 +120,26 @@ public class TragoBean extends Bean {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	public double getTotalCompra() {
+		double total = 0;
+		for (TragoView item : listatragos) {
+			if(Integer.valueOf(item.getCantidad()) > 0){				
+				total += item.getPrecio();
+			}
+		}
+		return total;
+	}
+	
+	public int cantidadProductos(){
+		int total = 0;
+		for (TragoView item : listatragos) {
+			if(Integer.valueOf(item.getCantidad()) > 0){				
+				total += 1;
+			}
+		}
+		return total;
+	}
+	
 
 	
 }
