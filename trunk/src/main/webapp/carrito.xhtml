@@ -234,7 +234,7 @@
 															<!-- Buy now button -->
 																
 															<div class="visible-xs">
-																	<a class="btn btn-danger btn-sm"  href="#"  onclick="$('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  )" >Agregar</a>
+																	<a class="btn btn-danger btn-sm"  href="#"  onclick="$('#cantDinero').text( parseFloat($('#cantDinero').text()) + #{user.precio} );$('#cantProd').text( parseInt($('#cantProd').text()) + 1); $('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  ); $('#carritoPopUp').hide()" >Agregar</a>
 															</div>
 																
 															<!-- Shopping item hover block & link -->
