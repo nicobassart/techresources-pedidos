@@ -130,40 +130,58 @@
 										<div class="col-md-4 col-sm-4">
 											<!-- Button Kart -->
 											
-											<div class="btn-cart-md" id="prueba">
+											<div class="btn-cart-md" id="prueba" onclick="$('#carritoPopUp').show()">
 											<br /><br />
 											
-													<h:outputLink class="cart-link" href="#">
+													<h:outputLink class="cart-link" href="#" id="tusCompras">
 													 <f:ajax execute="@form" event="click" immediate="true" render="prueba1 prueba2" > </f:ajax>
-														<!-- Image -->
-														<img class="img-responsive" src="imgs/cart.png" alt="" />
-														<!-- Heading -->
-														<h4>Tus Compras</h4>
-														<span > Productos: <label id="cantProd">0</label> $ <label id="cantDinero">0</label> </span>
-														<div class="clearfix"></div>
+													<!-- Image -->
+													<img class="img-responsive" src="imgs/cart.png" alt="" />
+													<!-- Heading -->
+													<h4>Tus Compras</h4>
+													<span > Productos: <label id="cantProd">0</label> $ <label id="cantDinero">0</label> </span>
+													<div class="clearfix"></div>
 													</h:outputLink>
 									
-												<ul class="cart-dropdown" role="menu" >
+												<ul class="cart-dropdown" role="menu" id="carritoPopUp" >
 				<!-- 									<p:panel id="red"  >
 													<p:dataList var="user" value="#{tragoBean.listatragos}"  type="definition">
 														<h:inputText value="#{user.cantidad}" />
 													</p:dataList>
 													</p:panel> -->
 													<h:panelGroup id="prueba1">
-													   <c:forEach var="item" items="#{tragoBean.listatragos}">
+													   <c:forEach var="item" items="#{tragoBean.listatragos}" varStatus="loop"	 >
 													    	<c:if test="${item.cantidad > 0}">
 																<li>
 																	<!-- Cart items for shopping list -->
-																	<div class="cart-item">
+																	<div class="cart-item" id="cart${loop.index}">
 																		<!-- Item remove icon -->
-																		<a href="#"><i class="fa fa-times"></i></a>
+																		<a href="#"><i class="fa fa-times"  onclick="$('#form\\:listaTragos\\:${loop.index}\\:cantidad').val(0); $('#cant${loop.index}').text(0);$('#cart${loop.index}').hide()"></i>
+																		
+																		</a>
 																		<!-- Image -->
+																		<div>
 																		<img class="img-responsive img-rounded" src="imgs/shopping/#{item.archivo}.jpg" alt="" />
 																		<!-- Title for purchase item -->
 																		<span class="cart-title"><a href="#">#{item.nombre}</a></span>
 																		<!-- Cart item price -->
 																		<span class="cart-price pull-right red">#{item.precio}</span>
-																		<div class="clearfix"></div>
+																		
+																		<br /> &nbsp; <a style="font-size: medium;"> &nbsp; Cant. &nbsp;</a>
+																		<a href="#" class="fa fa-plus-circle fa-1x" onclick="$('#form\\:listaTragos\\:${loop.index}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:${loop.index}\\:cantidad').val()) + 1  ); $('#cant${loop.index}').text( parseInt($('#cant${loop.index}').text()) + 1)"> </a>
+																		 &nbsp; <a id="cant${loop.index}" style="font-size: medium;"> ${item.cantidad} </a> &nbsp;
+																		<a href="#" class="fa fa-minus-circle fa-1x" onclick="$('#form\\:listaTragos\\:${loop.index}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:${loop.index}\\:cantidad').val()) - 1  ); $('#cant${loop.index}').text( parseInt($('#cant${loop.index}').text()) - 1)"></a>
+																		
+															
+																		</div>
+																		<br />	<br />
+																		
+																		
+																		<div class="clearfix">
+																	
+																	
+																	
+																		</div>
 																	</div>
 																</li>
 															</c:if>
@@ -221,7 +239,7 @@
 																
 															<!-- Shopping item hover block & link -->
 															<div class="item-hover br-red hidden-xs"></div>
-																	<a class="link hidden-xs" href="#"  onclick="$('#cantDinero').text( parseFloat($('#cantDinero').text()) + #{user.precio} );$('#cantProd').text( parseInt($('#cantProd').text()) + 1); $('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  )" >Agregar</a>
+																	<a class="link hidden-xs" href="#"  onclick="$('#cantDinero').text( parseFloat($('#cantDinero').text()) + #{user.precio} );$('#cantProd').text( parseInt($('#cantProd').text()) + 1); $('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  ); $('#carritoPopUp').hide()" >Agregar</a>
 															<h:inputHidden id="cantidad" value="#{user.cantidad}"    />
 														</div>
 
@@ -291,6 +309,7 @@
 					<!-- Custom JS -->
 					<!-- <script src="js/custom.js"></script> -->
 					<h:outputScript library="js" name="custom.js"  />
+					
 
 					<style type="text/css">
 						.datalist-noborder .ui-widget-content {
@@ -300,12 +319,10 @@
 					</style>
 					
 					<script type="text/javascript">
-					<!--
 					
-					//-->
-					</script>
 					
 
+					</script>
 				</h:form>
 			</ui:define>
 		</ui:composition>
