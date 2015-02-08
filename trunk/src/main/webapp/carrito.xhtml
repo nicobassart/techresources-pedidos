@@ -17,7 +17,7 @@
 					
 					
 					<!-- Shopping cart Modal -->
-					<div class="modal fade" id="shoppingcart1" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal fade" id="shoppingcart1" tabindex="-1" role="dialog" aria-hidden="true" >
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -37,11 +37,11 @@
 											</thead>
 												<tbody>
 												
-													   <c:forEach var="item" items="#{tragoBean.listatragos}">
+													   <c:forEach var="item" items="#{tragoBean.listatragos}" varStatus="loop"	>
 													   		<c:if test="${item.cantidad > 0}">
 																<tr>
 																	<td><a href="#"></a>#{item.nombre}</td>
-																	<td>#{item.cantidad}</td>
+																	<td><label id="cantAconfirmar${loop.index}"> #{item.cantidad}</label></td>
 																	<td>$#{item.precio}</td>
 																</tr>
 															</c:if>
@@ -77,10 +77,10 @@
 					
 						<!-- Header Start -->
 						
-						<div class="header" style="height: 152px;">
+						<div class="header" style="height: 152px;" >
 							<div class="container">
 								<!-- Header top area content -->
-								<div class="header-top">
+								<div class="header-top" >
 
 									<div class="row">
 										<div class="col-md-4 col-sm-4">
@@ -156,7 +156,7 @@
 																	<!-- Cart items for shopping list -->
 																	<div class="cart-item" id="cart${loop.index}">
 																		<!-- Item remove icon -->
-																		<a href="#"><i class="fa fa-times"  onclick="$('#form\\:listaTragos\\:${loop.index}\\:cantidad').val(0); $('#cant${loop.index}').text(0);$('#cart${loop.index}').hide()"></i>
+																		<a href="#"><i class="fa fa-times"  onclick="removeItem(${loop.index})"></i>
 																		
 																		</a>
 																		<!-- Image -->
@@ -165,12 +165,12 @@
 																		<!-- Title for purchase item -->
 																		<span class="cart-title"><a href="#">#{item.nombre}</a></span>
 																		<!-- Cart item price -->
-																		<span class="cart-price pull-right red">#{item.precio}</span>
+																		<span class="cart-price pull-right red" > $ <h:outputText value="#{item.precio}" /> /u</span>
 																		
 																		<br /> &nbsp; <a style="font-size: medium;"> &nbsp; Cant. &nbsp;</a>
-																		<a href="#" class="fa fa-plus-circle fa-1x" onclick="$('#form\\:listaTragos\\:${loop.index}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:${loop.index}\\:cantidad').val()) + 1  ); $('#cant${loop.index}').text( parseInt($('#cant${loop.index}').text()) + 1)"> </a>
+																		<a href="#" class="fa fa-plus-circle fa-1x" onclick="onClickPlus(${loop.index})"> </a>
 																		 &nbsp; <a id="cant${loop.index}" style="font-size: medium;"> ${item.cantidad} </a> &nbsp;
-																		<a href="#" class="fa fa-minus-circle fa-1x" onclick="$('#form\\:listaTragos\\:${loop.index}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:${loop.index}\\:cantidad').val()) - 1  ); $('#cant${loop.index}').text( parseInt($('#cant${loop.index}').text()) - 1)"></a>
+																		<a href="#" class="fa fa-minus-circle fa-1x" onclick="onClickLess(${loop.index})"></a>
 																		
 															
 																		</div>
@@ -207,7 +207,7 @@
 						<!-- Header End -->
 						
 						<!-- Inner Content -->
-						<div class="inner-page padd">
+						<div class="inner-page padd" onclick="$('#carritoPopUp').hide()">
 							
 							<!-- Shopping Start -->
 							
@@ -227,7 +227,7 @@
 															<a href="item-single.html"><img class="img-responsive" src="imgs/shopping/#{user.archivo}.jpg" alt="" /></a>
 															<!-- Shopping item name / Heading -->
 															<h4 class="pull-left"><a href="item-single.html"><h:outputText value="#{user.nombre}" /></a></h4>
-															<span class="item-price pull-right"><h:outputText value="#{user.precio}" /></span>
+															<span class="item-price pull-right">$ <h:outputText value="#{user.precio}" /></span>
 															<div class="clearfix"></div>
 															<!-- Paragraph -->
 															<p><h:outputText value="#{user.descripcion}" /></p>
@@ -319,6 +319,55 @@
 					</style>
 					
 					<script type="text/javascript">
+					
+					function onClickPlus(loopIndex){
+						var nameCantidad = "form\\:listaTragos\\:"+loopIndex+"\\:cantidad";
+	
+						$("form").find("#"+nameCantidad).val(parseInt($("#"+nameCantidad).val()) + 1  );
+						
+						$("form").find("#cant"+loopIndex).text(parseInt($("form").find("#cant"+loopIndex).text()) + 1  );
+						
+						$("form").find("#cantAconfirmar"+loopIndex).text(parseInt($("form").find("#cantAconfirmar"+loopIndex).text()) + 1  );
+						
+						$("form").find("#cantProd").text( parseInt($("form").find("#cantProd").text()) +1 );
+						
+					}
+					
+					function onClickLess(loopIndex){
+						var nameCantidad = "form\\:listaTragos\\:"+loopIndex+"\\:cantidad";
+						
+						if(parseInt($("#"+nameCantidad).val()) == 0){
+							return;
+						}
+						
+						$("form").find("#"+nameCantidad).val(parseInt($("#"+nameCantidad).val()) - 1  );
+						
+						$("form").find("#cant"+loopIndex).text(parseInt($("form").find("#cant"+loopIndex).text()) - 1  );
+						
+						$("form").find("#cantAconfirmar"+loopIndex).text(parseInt($("form").find("#cantAconfirmar"+loopIndex).text()) - 1  );
+						
+						
+						$("form").find("#cantProd").text( parseInt($("form").find("#cantProd").text()) -1 );
+					
+						
+					
+					}
+					
+					function removeItem(loopIndex){
+
+						var nameCantidad = "form\\:listaTragos\\:"+loopIndex+"\\:cantidad";
+						
+						//le resto la cantidad de items del producto eliminado al titulo "Productos:"
+						$("form").find("#cantProd").text( parseInt($("form").find("#cantProd").text()) -  parseInt($("form").find("#"+nameCantidad).val()) );
+						
+						
+						$("form").find("#"+nameCantidad).val(0);
+						
+						$("form").find("#cant"+loopIndex).text(0);
+						
+						$("form").find('#cart'+loopIndex).hide();
+					
+					}
 					
 					
 
