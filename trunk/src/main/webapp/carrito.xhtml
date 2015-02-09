@@ -14,8 +14,22 @@
 			<ui:define name="body" >
 						
 				<h:form id="form" >
-					
-					
+				
+				
+				
+				<div id="popUpPordAgregado"  class="modal fade bs-example-modal-sm" tabindex="-1" 
+				     role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+				  <div class="modal-dialog modal-sm" style="margin-top: 20%; margin-left: 39%;">
+				    <div class="modal-content" style="height: 50px; ">
+				          <span class="label label-default"></span>
+				          <div class="alert alert-success" role="alert">
+						      <strong>Excelente!</strong> Producto Agregado al carrito<a href="#" class="alert-link"></a>.
+						  </div>
+						  <img class="img-responsive" src="imgs/cart.png" style="margin-top: 20%; margin-left: 26%;"/>
+				    </div>
+				  </div>
+				</div>
+
 					<!-- Shopping cart Modal -->
 					<div class="modal fade" id="shoppingcart1" tabindex="-1" role="dialog" aria-hidden="true" >
 						<div class="modal-dialog">
@@ -156,7 +170,7 @@
 																	<!-- Cart items for shopping list -->
 																	<div class="cart-item" id="cart${loop.index}">
 																		<!-- Item remove icon -->
-																		<a href="#"><i class="fa fa-times"  onclick="removeItem(${loop.index})"></i>
+																		<a href="#"><i class="fa fa-times"  onclick="removeItem(${loop.index},  #{item.precio})"></i>
 																		
 																		</a>
 																		<!-- Image -->
@@ -168,9 +182,9 @@
 																		<span class="cart-price pull-right red" > $ <h:outputText value="#{item.precio}" /> /u</span>
 																		
 																		<br /> &nbsp; <a style="font-size: medium;"> &nbsp; Cant. &nbsp;</a>
-																		<a href="#" class="fa fa-plus-circle fa-1x" onclick="onClickPlus(${loop.index})"> </a>
+																		<a href="#" class="fa fa-plus-circle fa-1x" onclick="onClickPlus(${loop.index}, #{item.precio})"> </a>
 																		 &nbsp; <a id="cant${loop.index}" style="font-size: medium;"> ${item.cantidad} </a> &nbsp;
-																		<a href="#" class="fa fa-minus-circle fa-1x" onclick="onClickLess(${loop.index})"></a>
+																		<a href="#" class="fa fa-minus-circle fa-1x" onclick="onClickLess(${loop.index}, #{item.precio})"></a>
 																		
 															
 																		</div>
@@ -234,12 +248,12 @@
 															<!-- Buy now button -->
 																
 															<div class="visible-xs">
-																	<a class="btn btn-danger btn-sm"  href="#"  onclick="$('#cantDinero').text( parseFloat($('#cantDinero').text()) + #{user.precio} );$('#cantProd').text( parseInt($('#cantProd').text()) + 1); $('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  ); $('#carritoPopUp').hide()" >Agregar</a>
+																	<a class="btn btn-danger btn-sm"  href="#"  onclick="agregarProducto(#{rowIndex},#{user.precio})" >Agregar</a>
 															</div>
 																
 															<!-- Shopping item hover block & link -->
 															<div class="item-hover br-red hidden-xs"></div>
-																	<a class="link hidden-xs" href="#"  onclick="$('#cantDinero').text( parseFloat($('#cantDinero').text()) + #{user.precio} );$('#cantProd').text( parseInt($('#cantProd').text()) + 1); $('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val(   parseInt($('#form\\:listaTragos\\:#{rowIndex}\\:cantidad').val()) + 1  ); $('#carritoPopUp').hide()" >Agregar</a>
+																	<a class="link hidden-xs" href="#"  onclick="agregarProducto(#{rowIndex},#{user.precio})" >Agregar</a>
 															<h:inputHidden id="cantidad" value="#{user.cantidad}"    />
 														</div>
 
@@ -320,18 +334,34 @@
 					
 					<script type="text/javascript">
 					
-					function onClickPlus(loopIndex){
+					function onClickPlus(loopIndex, precio){
 						var nameCantidad = "form\\:listaTragos\\:"+loopIndex+"\\:cantidad";
 	
+						$("form").find("#cantProd").text( parseInt($("form").find("#cantProd").text()) +1 );
+						
 						$("form").find("#"+nameCantidad).val(parseInt($("#"+nameCantidad).val()) + 1  );
 						
 						$("form").find("#cant"+loopIndex).text(parseInt($("form").find("#cant"+loopIndex).text()) + 1  );
 						
 						$("form").find("#cantAconfirmar"+loopIndex).text(parseInt($("form").find("#cantAconfirmar"+loopIndex).text()) + 1  );
-						
-						$("form").find("#cantProd").text( parseInt($("form").find("#cantProd").text()) +1 );
+					
+						$('#cantDinero').text( (parseFloat($('#cantDinero').text()) + parseFloat(precio)).toFixed(2) );
 						
 					}
+					
+					function agregarProducto(loopIndex, precio){
+						var nameCantidad = "form\\:listaTragos\\:"+loopIndex+"\\:cantidad";
+	
+						$('#cantDinero').text( (parseFloat($('#cantDinero').text()) + parseFloat(precio)).toFixed(2) );
+						
+						$("form").find("#"+nameCantidad).val(parseInt($("#"+nameCantidad).val()) + 1  ); 
+						$("form").find("#cantProd").text( parseInt($("form").find("#cantProd").text()) +1 );
+						
+						$('#carritoPopUp').hide();
+						
+						$('#popUpPordAgregado').modal('show');
+					}
+
 					
 					function onClickLess(loopIndex){
 						var nameCantidad = "form\\:listaTragos\\:"+loopIndex+"\\:cantidad";
@@ -346,20 +376,21 @@
 						
 						$("form").find("#cantAconfirmar"+loopIndex).text(parseInt($("form").find("#cantAconfirmar"+loopIndex).text()) - 1  );
 						
-						
 						$("form").find("#cantProd").text( parseInt($("form").find("#cantProd").text()) -1 );
-					
 						
+						$('#cantDinero').text( (parseFloat($('#cantDinero').text()) - parseFloat(precio)).toFixed(2) );
 					
 					}
 					
-					function removeItem(loopIndex){
+					function removeItem(loopIndex, precio){
 
 						var nameCantidad = "form\\:listaTragos\\:"+loopIndex+"\\:cantidad";
 						
 						//le resto la cantidad de items del producto eliminado al titulo "Productos:"
 						$("form").find("#cantProd").text( parseInt($("form").find("#cantProd").text()) -  parseInt($("form").find("#"+nameCantidad).val()) );
 						
+						
+						$('#cantDinero').text( (parseFloat($('#cantDinero').text()) - (parseFloat(precio)*$("form").find("#"+nameCantidad).val())).toFixed(2) );
 						
 						$("form").find("#"+nameCantidad).val(0);
 						
@@ -371,6 +402,7 @@
 					
 					
 
+					
 					</script>
 				</h:form>
 			</ui:define>
