@@ -1,31 +1,24 @@
 package ar.com.tragos.pojos;
 
+import ar.com.tragos.entity.Clientes;
 import ar.com.tragos.entity.Ventas;
 
-public class VentasOnLine extends Ventas{
+public class VentasOnLine {
 	
-	private static final long serialVersionUID = 1L;
-	private int idCliente;
-	private String email;
-	private String telefono;
-	public int getIdCliente() {
-		return idCliente;
+	private Ventas ventas;
+	private Clientes clientes;
+	
+	
+	public Ventas getVentas() {
+		return ventas;
 	}
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
+	public void setVentas(Ventas ventas) {
+		this.ventas = ventas;
 	}
-	public String getEmail() {
-		return email;
+	public Clientes getClientes() {
+		return clientes;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setClientes(Clientes clientes) {
+		this.clientes = clientes;
 	}
-	public String getTelefono() {
-		return telefono;
-	}
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-
 }

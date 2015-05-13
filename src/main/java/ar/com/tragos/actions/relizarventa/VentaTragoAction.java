@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.WebApplicationContext;
 
 import ar.com.tragos.actions.Action;
+import ar.com.tragos.bean.listarpedidos.ListarPedidosBean;
 import ar.com.tragos.bean.trago.TragoBean;
 import ar.com.tragos.servicios.mail.IServicioMail;
 import ar.com.tragos.servicios.ventas.IServicioVentas;
@@ -23,16 +24,22 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 	private TragoBean tragoBean;
 	
 	@Autowired
+	private ListarPedidosBean listarPedidosBean;
+	
+	@Autowired
 	private IServicioVentas servicioVentas;
 
 	@Autowired
 	private IServicioMail servicioMail;
 		
 	public String realizarVenta() {
+		
+		
+		System.out.println("Probando");
 		if(!tragoBean.validarLista()){
 	        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Validación",  "Debe seleccionar algun trago para vender!!");  
         
-	        FacesContext.getCurrentInstance().addMessage(null, message);
+	      //  FacesContext.getCurrentInstance().addMessage(null, message);
 
 	        return "error";
 		}
@@ -51,7 +58,31 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 
 		return "success"+tragoBean.getIdMesera();
 	}
+	
+	public String realizarRechazo() {
+		System.out.println("Probando");
+		if(!tragoBean.validarLista()){
+	        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Validación",  "Debe seleccionar algun trago para vender!!");  
+        
+	      //  FacesContext.getCurrentInstance().addMessage(null, message);
 
+	        return "error";
+		}
+		
+//		try {
+//			//Servicio para resolver el envio de emial o SMS.
+//			//servicioInformar.informarVenta();
+
+			servicioMail.send(tragoBean.getEmail(), "Rechazo de Pedido", "Los siguientes pedidos no pueden ser completados: " + listarPedidosBean.getComentario());
+			servicioVentas.registrarVentaOnLine(tragoBean.getListatragos(),tragoBean.getIdMesaInt(),tragoBean.getEmail(),tragoBean.getTelefono());
+//		} catch (IOException e) {
+//	        FacesMessage msg = new FacesMessage("Ocurrio un error",e.toString());  
+//	        FacesContext.getCurrentInstance().addMessage(null, msg);  
+//	        return "";
+//		}
+
+		return "success"+tragoBean.getIdMesera();
+	}
 	public void agregarTragoCarrito() {
 		System.out.println("Vamos a agregar lo comprado al carrito");
 	}

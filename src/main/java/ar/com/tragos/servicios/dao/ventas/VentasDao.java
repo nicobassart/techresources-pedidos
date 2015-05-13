@@ -1,5 +1,6 @@
 package ar.com.tragos.servicios.dao.ventas;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -89,7 +90,23 @@ public class VentasDao implements IVentasDao{
 	@SuppressWarnings("unchecked")
 	public List<VentasOnLine> getVentasOnLine() {
 
-		List<VentasOnLine> resultList = em.createQuery("from Ventas v, Clientes c  where v.idCliente =  c.idCliente").getResultList();
+		List<VentasOnLine> resultList = em.createQuery("from Ventas v join v.Cliente c  where v.idCliente =  c.idCliente ").getResultList();
 		return resultList;
+	}
+
+	@Bean
+	@Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.INTERFACES)
+	@SuppressWarnings("unchecked")
+	public List<Ventas> getVentasUnCliente(int idCliente) {
+		List<Ventas> ventasMesa= null;
+		Query query = em.createQuery("from Ventas as u where u.idCliente = ?");
+		query.setParameter(1, idCliente);
+		try {
+			ventasMesa = (List<Ventas>) query.getResultList();
+		}
+		catch (NoResultException e) {
+			System.out.println("No hay resultados para el consumo de la mesa nro " + idCliente);
+		}
+		return ventasMesa;
 	}
 }

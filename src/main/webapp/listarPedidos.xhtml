@@ -11,56 +11,81 @@
 		<ui:composition template="/template.xhtml">
 
 			<ui:define name="body">
-				<h:form>
+				<h:form id="form">
+
+					<p:growl id="messages" showDetail="true" sticky="true" />
+					<p:dialog id="confirmDialog" appendToBody="true"
+						message="Desea confirmar la venta? Tenga en cuenta el precio de pizarra"
+						header="Confirmación de venta" severity="warning"
+						widgetVar="confirmation">
+
+						<p:outputPanel id="carDetail" style="text-align:center;" rendered="false">
+
+							<p:dataTable var="pedido"
+								value="#{listarPedidosBean.detalleVentas}" style="width: 100%">
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Nombre" />
+									</f:facet>
+									<h:outputText value="#{pedido.nombreTrago}" />
+								</p:column>
+							</p:dataTable>
+
+							<h:outputText value="Enviar comentario." />
+
+							<h:inputTextarea value="#{listarPedidosBean.comentario}"></h:inputTextarea>
+
+							<!-- <p:commandButton value="Vender" ajax="true" action="#{listarPedidosBean.getVentasOnLine()}" oncomplete="confirmation.hide()"	/> -->
+							<p:commandButton value="Vender" update="messages"
+								action="#{ventaTragoAction.realizarVenta}" />
+
+							<p:commandButton value="Rechazar" update="messages"
+								action="#{ventaTragoAction.realizarRechazo}" />
+
+							<p:commandButton value="Cancelar" onclick="confirmation.hide()" />
+						</p:outputPanel>
+					</p:dialog>
 					<p:panelGrid>
+
 						<f:facet name="header">
 							<p:row>
 								<p:column>Listado de pedidos On Line</p:column>
 							</p:row>
 						</f:facet>
+
 						<p:row>
 							<p:column>
-								<p:dataTable var="pedido" value="#{listarPedidosBean.ventasOnLine}" style="width: 100%">
+								<p:dataTable var="pedido"  value="#{listarPedidosBean.ventasOnLine}" style="width: 100%">
 									<p:column>
 										<f:facet name="header">
-											<h:outputText value="Nombre Trago" />
+											<h:outputText value="Email" />
 										</f:facet>
-										<h:outputText value="#{pedido.nombreTrago}" />
+										<h:outputText value="#{pedido.email}" />
 									</p:column>
 									<p:column>
 										<f:facet name="header">
-											<h:outputText value="Precio" />
+											<h:outputText value="Telefono" />
 										</f:facet>
-										<h:outputText value="#{pedido.ventas.precio}" />
+										<h:outputText value="#{pedido.telefono}" />
 									</p:column>
 									<p:column>
 										<f:facet name="header">
-											<h:outputText value="Cantidad" />
+											<h:outputText value="Ver" />
 										</f:facet>
-										<h:outputText value="#{pedido.ventas.cantidad}" />
+
+ 										<p:commandButton value="ver" ajax="true" immediate="false"
+											action="#{listarPedidosBean.setIdCliente(pedido.idCliente)}"
+											oncomplete="confirmation.show()">
+										<!--<p:commandButton value="ver"   > -->
+											<!-- 												action="#{listarPedidosBean.setIdCliente(pedido.idCliente)}" oncomplete="confirmation.show()" update=":form:carDetail"> -->
+											<!-- <f:ajax event="click" listener="#{listarPedidosBean.setIdCliente(pedido.idCliente)}"  oncomplete="confirmation.show()"/> -->
+										</p:commandButton>
 									</p:column>
 								</p:dataTable>
 							</p:column>
 						</p:row>
-
-
-<!-- 						<p:row>
-							<p:column>
-								<h:outputText
-									value=" Total de consumido: #{cerrarMesaBean.totalConsumos}" />
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column colspan="2">
-								<p:commandButton
-									action="#{cerrarMesaAction.cerrarMesaSeleccionada}"
-									value="Cerrar Mesa" ajax="false" styleClass="botonGenerico" />
-
-								<p:button outcome="cerrarMesa" value="Volver"
-									styleClass="botonGenerico" />
-							</p:column>
-						</p:row>
- -->					</p:panelGrid>
+					</p:panelGrid>
+					<!-- <p:commandButton value="Vender" update="messages" action="#{ventaTragoAction.realizarVenta}" ajax="true" /> -->
 				</h:form>
 			</ui:define>
 		</ui:composition>
