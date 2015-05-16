@@ -343,13 +343,13 @@
 					function onClickPlus(loopIndex, precio){
 						var nameCantidad = "form\\:listaTragos\\:"+loopIndex+"\\:cantidad";
 	
-						$("form").find("#cantProd").text( parseInt($("form").find("#cantProd").text()) +1 );
-						
 						$("form").find("#"+nameCantidad).val(parseInt($("#"+nameCantidad).val()) + 1  );
 						
 						$("form").find("#cant"+loopIndex).text(parseInt($("form").find("#cant"+loopIndex).text()) + 1  );
 						
 						$("form").find("#cantAconfirmar"+loopIndex).text(parseInt($("form").find("#cantAconfirmar"+loopIndex).text()) + 1  );
+						
+						$("form").find("#cantProd").text( parseInt($("form").find("#cantProd").text()) +1 );
 					
 						$('#cantDinero').text( (parseFloat($('#cantDinero').text()) + parseFloat(precio)).toFixed(2) );
 						
@@ -369,7 +369,7 @@
 					}
 
 					
-					function onClickLess(loopIndex){
+					function onClickLess(loopIndex, precio){
 						var nameCantidad = "form\\:listaTragos\\:"+loopIndex+"\\:cantidad";
 						
 						if(parseInt($("#"+nameCantidad).val()) == 0){
