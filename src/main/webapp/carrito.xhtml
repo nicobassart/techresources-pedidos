@@ -68,7 +68,7 @@
 										</table>
 										
 										<p>Nombre:</p>
-										<h:inputText value="#{tragoBean.idMesa}"    />
+										<h:inputText value="#{tragoBean.idMesa}" />
 										<p>Telefono:</p>
 										<h:inputText value="#{tragoBean.telefono}"    />
 										<p>Email:</p>
@@ -247,9 +247,9 @@
 														<div class="shopping-item">
 													 		
 															<!-- Image -->
-															<a href="item-single.html"><img class="img-responsive" src="imgs/shopping/#{user.archivo}.jpg" alt="" /></a>
+															<a href="Javascript: agregarProducto(#{rowIndex},#{user.precio})"><img class="img-responsive" src="imgs/shopping/#{user.archivo}.jpg" alt="" /></a>
 															<!-- Shopping item name / Heading -->
-															<h4 class="pull-left"><a href="item-single.html"><h:outputText value="#{user.nombre}" /></a></h4>
+															<h4 class="pull-left"><a href="#"><h:outputText value="#{user.nombre}" /></a></h4>
 															<span class="item-price pull-right">$ <h:outputText value="#{user.precio}" /></span>
 															<div class="clearfix"></div>
 															<!-- Paragraph -->
