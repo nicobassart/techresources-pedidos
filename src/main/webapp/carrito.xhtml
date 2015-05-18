@@ -15,8 +15,6 @@
 						
 				<h:form id="form" >
 				
-				
-				
 					<div id="popUpPordAgregado"  class="modal fade bs-example-modal-sm" tabindex="-1" 
 					     role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 					  <div class="modal-dialog modal-sm" style="margin-top: 20%;">
@@ -29,6 +27,7 @@
 					    </div>
 					  </div>
 					</div>
+
 
 					<!-- Shopping cart Modal -->
 					<div class="modal fade" id="shoppingcart1" tabindex="-1" role="dialog" aria-hidden="true" >
@@ -68,17 +67,22 @@
 										</table>
 										
 										<p>Nombre:</p>
-										<h:inputText style="width: 300px;" value="#{tragoBean.idMesa}"/>
+										<h:inputText id="nombre" style="width: 300px;" value="#{tragoBean.idMesa}"   />
 										<p>Telefono:</p>
-										<h:inputText style="width: 300px;" value="#{tragoBean.telefono}"    />
+										<h:inputText id="telefono" style="width: 300px;" value="#{tragoBean.telefono}" />
 										<p>Email:</p>
-										<h:inputText style="width: 300px;" value="#{tragoBean.email}"    />
+										<h:inputText id="mail" style="width: 300px;" value="#{tragoBean.email}"    />
 									</div>
 								</h:panelGroup>
+								
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Continuar Comprando</button>
 									<!-- <button type="button" class="btn btn-info"></button> -->
-									<p:commandButton id="confirm" styleClass="btn btn-info" value="Finalizar Compra" action="#{ventaTragoAction.realizarVenta}" />
+									<p:commandButton id="confirm" 
+									                 styleClass="btn btn-info"
+									                 value="Finalizar Compra" 
+									                 action="#{ventaTragoAction.realizarVenta}" />
+								<h:message for="send"></h:message>
 									
 								</div>
 							</div><!-- /.modal-content -->
@@ -410,6 +414,8 @@
 
 					
 					</script>
+					
+					
 				</h:form>
 			</ui:define>
 		</ui:composition>
