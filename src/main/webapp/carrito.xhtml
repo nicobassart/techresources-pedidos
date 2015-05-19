@@ -68,10 +68,12 @@
 										
 										<p>Nombre:</p>
 										<h:inputText id="nombre" style="width: 300px;" value="#{tragoBean.idMesa}"   />
-										<p>Telefono:</p>
-										<h:inputText id="telefono" style="width: 300px;" value="#{tragoBean.telefono}" />
+										<label id="msgNombre"  style="color: red;"/>
 										<p>Email:</p>
 										<h:inputText id="mail" style="width: 300px;" value="#{tragoBean.email}"    />
+										<label id="msgMail" style="color: red;"/>
+										<p>Telefono:</p>
+										<h:inputText id="telefono" style="width: 300px;" value="#{tragoBean.telefono}" />
 									</div>
 								</h:panelGroup>
 								
@@ -81,7 +83,7 @@
 									<p:commandButton id="confirm" 
 									                 styleClass="btn btn-info"
 									                 value="Finalizar Compra" 
-									                 action="#{ventaTragoAction.realizarVenta}" />
+									                 action="#{ventaTragoAction.realizarVenta}" onclick="return validarDatosCliente();"/>
 								<h:message for="send"></h:message>
 									
 								</div>
@@ -410,8 +412,27 @@
 					
 					}
 					
-					
+					function validarDatosCliente(){
+						var ok = true;
+						if($('#form\\:nombre').val() == ""){
+							ok = false;
+							$('#msgNombre').html(" Ingrese su nombre por favor");
+						}else{
+							$('#msgNombre').html("");
+						}
+						if(validateEmail($('#form\\:mail').val()) == false){	
+							ok = false;
+							$('#msgMail').html(" Ingrese su mail correctamente por favor");
+						}else{
+							$('#msgMail').html("");
+						}
+						return ok;
+					}
 
+					function validateEmail(email) {
+					    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+					    return re.test(email);
+					}
 					
 					</script>
 					
