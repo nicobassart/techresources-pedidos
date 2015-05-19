@@ -49,7 +49,7 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 //			//servicioInformar.informarVenta();
 
 			servicioMail.send(tragoBean.getEmail(), "Solicitud de Pedido", "Los siguientes pedidos:");
-			servicioVentas.registrarVentaOnLine(tragoBean.getListatragos(),tragoBean.getIdMesaInt(),tragoBean.getEmail(),tragoBean.getTelefono());
+			servicioVentas.registrarVentaOnLine(tragoBean.getListatragos(),tragoBean.getIdMesaInt(),tragoBean.getEmail(),tragoBean.getTelefono(),tragoBean.getNombre());
 //		} catch (IOException e) {
 //	        FacesMessage msg = new FacesMessage("Ocurrio un error",e.toString());  
 //	        FacesContext.getCurrentInstance().addMessage(null, msg);  
@@ -74,7 +74,7 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 //			//servicioInformar.informarVenta();
 
 			servicioMail.send(tragoBean.getEmail(), "Rechazo de Pedido", "Los siguientes pedidos no pueden ser completados: " + listarPedidosBean.getComentario());
-			servicioVentas.registrarVentaOnLine(tragoBean.getListatragos(),tragoBean.getIdMesaInt(),tragoBean.getEmail(),tragoBean.getTelefono());
+			servicioVentas.registrarVentaOnLine(tragoBean.getListatragos(),tragoBean.getIdMesaInt(),tragoBean.getEmail(),tragoBean.getTelefono(),tragoBean.getNombre());
 //		} catch (IOException e) {
 //	        FacesMessage msg = new FacesMessage("Ocurrio un error",e.toString());  
 //	        FacesContext.getCurrentInstance().addMessage(null, msg);  

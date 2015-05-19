@@ -7,7 +7,7 @@ import ar.com.tragos.entity.Clientes;
 
 public interface IClientesDao {
 
-	public int registrarCliente(String email, String telefono);
+	public int registrarCliente(String email, String telefono,String nombre);
 	public List<Clientes> consultarClientes();
 	
 }

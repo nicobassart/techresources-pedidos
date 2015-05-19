@@ -15,6 +15,10 @@ import ar.com.tragos.entity.Ventas;
 import ar.com.tragos.servicios.dao.clientes.IClientesDao;
 import ar.com.tragos.servicios.dao.ventas.IVentasDao;
 
+/**
+ * @author studio
+ *
+ */
 @Named
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class ListarPedidosBean extends Bean {
@@ -31,7 +35,17 @@ public class ListarPedidosBean extends Bean {
 	
 	private String comentario;
 	private List<Clientes> lista;
+	
+	private boolean renderDetalle;
+	
+	
 			
+	public boolean isRenderDetalle() {
+		return renderDetalle;
+	}
+	public void setRenderDetalle(boolean renderDetalle) {
+		this.renderDetalle = renderDetalle;
+	}
 	public List<Ventas> getDetalleVentas(){
 		
 		return ventas.getVentasUnCliente(this.getIdCliente()); 

@@ -26,7 +26,9 @@ public class TragoBean extends Bean {
 	private String idMesera;
 	private String idMesa;
 	private String email;
-	private String telefono; 
+	private String telefono;
+	private String nombre;
+	
 	private List<TragoView> listatragos = new ArrayList<TragoView>();
 
 
@@ -66,6 +68,12 @@ public class TragoBean extends Bean {
 		return false;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	public String getVerificarTime() {
 		return parametria.getParametro(TIEMPO_ACTUALIZACION).getValor();
 	}

@@ -109,9 +109,9 @@ public class ServicioVentas extends Servicios implements IServicioVentas{
 
 	@Override
 	public void registrarVentaOnLine(List<TragoView> listatragos,
-			int idMesaInt, String email, String telefono) {
+			int idMesaInt, String email, String telefono ,String nombre) {
 		//Vamos a registrar el cliente
-		int idCliente = clientes.registrarCliente(email, telefono);
+		int idCliente = clientes.registrarCliente(email, telefono, nombre);
 		
 		float precioCompra=0;
 		String textoImpresion="CONSUMO MESA NRO " + idMesaInt +"\n";

@@ -85,10 +85,11 @@ public class ClientesDao implements IClientesDao{
 
 	@Override
 	@Transactional
-	public int registrarCliente(String email, String telefono) {
+	public int registrarCliente(String email, String telefono, String nombre) {
 		Clientes unaVenta = new Clientes();
 		unaVenta.setEmail(email);
 		unaVenta.setTelefono(telefono);
+		unaVenta.setNombre(nombre);
 		em.persist(unaVenta);
 		return unaVenta.getIdCliente();
 	}

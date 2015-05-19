@@ -111,7 +111,7 @@ public class ServicioMailImpl implements IServicioMail {
         }  
           
         // el envío  
-        this.mailSender.send(message);  
+       // this.mailSender.send(message);  
     }  
   
 } 

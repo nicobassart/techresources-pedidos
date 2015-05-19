@@ -88,6 +88,9 @@ public class Trago implements Serializable {
 	public boolean isActivo() {
 		return activo;
 	}
+	public String getActivoString() {
+		return (activo?"Si":"No");
+	}
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
