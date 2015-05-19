@@ -11,86 +11,86 @@
 		<ui:composition template="/template.xhtml">
 
 			<ui:define name="body">
-	<h:form id="form">
-		<p:growl id="mensaje" showDetail="true" sticky="true" />
-		<p:panel header="Modificacion de parametria de tragos Activar / Desactivar / Quiebra" footer="Cilantro Bar">
-
-			<p:dataTable var="unTrago" value="#{parametriaTragosBean.listaTragos}"	id="carList" editable="true">
-				<p:ajax event="rowEdit" listener="#{parametriaTragosBean.onEdit}"
-					update=":form:mensaje" />
-				<p:ajax event="rowEditCancel" listener="#{parametriaTragosBean.onCancel}"
-					update=":form:mensaje" />
-	
-				<p:column headerText="Nombre Trago">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{unTrago.nombre}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{unTrago.nombre}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="Precio" style="width:50px">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{unTrago.precio}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{unTrago.precio}" style="width:50px"/>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="Minimo" style="width:50px">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{unTrago.precioMin}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{unTrago.precioMin}" style="width:50px"/>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="Maximo" style="width:50px" >
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{unTrago.precioMax}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{unTrago.precioMax}" style="width:50px"/>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="Estado" style="width:100px">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{unTrago.estado}" />
-						</f:facet>
-						<f:facet name="input">
-						    <h:selectOneMenu value="#{unTrago.estado}" style="width:100px"  >  
-                        		<f:selectItems value="#{parametriaTragosBean.estados}"  
-                            		var="estado"	itemLabel="#{estado.name}" itemValue="#{estado.name}" />  
-                    		</h:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="Activo" style="width:50px">
-					<p:cellEditor>
-						<f:facet name="output">
-						 <h:outputText value="#{unTrago.activo}" />  
-						</f:facet>
-						<f:facet name="input">
-						 <p:selectBooleanButton value="#{unTrago.activo}" onLabel="Si" offLabel="No" style="width:100%"/>  
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="Options" style="width:30px">
-					<p:rowEditor />
-				</p:column>
-	
-			</p:dataTable>
-		</p:panel>
-	</h:form>
+				<h:form id="form">
+					<p:growl id="mensaje" showDetail="true" sticky="true" />
+					<p:panel header="Modificacion de parametria de tragos Activar / Desactivar / Quiebra" footer="Cilantro Bar">
+			
+						<p:dataTable var="unTrago" value="#{parametriaTragosBean.listaTragos}"	id="carList" editable="true">
+							<p:ajax event="rowEdit" listener="#{parametriaTragosBean.onEdit}"
+								update=":form:mensaje" />
+							<p:ajax event="rowEditCancel" listener="#{parametriaTragosBean.onCancel}"
+								update=":form:mensaje" />
+				
+							<p:column headerText="Nombre Producto">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{unTrago.nombre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{unTrago.nombre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="Precio" style="width:50px">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{unTrago.precio}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{unTrago.precio}" style="width:50px"/>
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+			<!-- 				<p:column headerText="Minimo" style="width:50px">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{unTrago.precioMin}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{unTrago.precioMin}" style="width:50px"/>
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="Maximo" style="width:50px" >
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{unTrago.precioMax}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{unTrago.precioMax}" style="width:50px"/>
+									</f:facet>
+								</p:cellEditor>
+							</p:column> -->
+<!-- 							<p:column headerText="Estado" style="width:100px">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{unTrago.estado}" />
+									</f:facet>
+									<f:facet name="input">
+									    <h:selectOneMenu value="#{unTrago.estado}" style="width:100px"  >  
+			                        		<f:selectItems value="#{parametriaTragosBean.estados}"  
+			                            		var="estado"	itemLabel="#{estado.name}" itemValue="#{estado.name}" />  
+			                    		</h:selectOneMenu>
+									</f:facet>
+								</p:cellEditor>
+							</p:column> -->
+							<p:column headerText="Publicado" style="width:50px">
+								<p:cellEditor>
+									<f:facet name="output">
+									 <h:outputText value="#{unTrago.activoString}"  />  
+									</f:facet>
+									<f:facet name="input">
+									 <p:selectBooleanButton value="#{unTrago.activo}" onLabel="Si" offLabel="No" style="width:100%"/>  
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="Opciones" style="width:30px">
+								<p:rowEditor />
+							</p:column>
+				
+						</p:dataTable>
+					</p:panel>
+				</h:form>
 			</ui:define>
 		</ui:composition>
 	</f:view>
