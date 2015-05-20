@@ -4,4 +4,5 @@ public interface IVentaTragoAction {
 	
 	public String realizarVenta();
 	public void agregarTragoCarrito();
+	public void confirmarVenta();
 }

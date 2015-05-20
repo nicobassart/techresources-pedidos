@@ -49,9 +49,9 @@
 							<br/>
 							<br/>
 
-							<!-- <p:commandButton value="Vender" ajax="true" action="#{listarPedidosBean.getVentasOnLine()}" oncomplete="confirmation.hide()"	/> -->
-							<p:commandButton value="Vender" update="messages"
-								action="#{ventaTragoAction.realizarVenta}"  ajax="true"/>
+							<!-- <p:commandButton value="Vender" ajax="true" action="#{listarPedidosBean.getVentasOnLine()}" 	/> -->
+							<p:commandButton value="Confirmar Venta" update="messages"
+								action="#{ventaTragoAction.confirmarVenta}"  ajax="true" oncomplete="confirmation.hide()" />
 
 							<p:commandButton value="Rechazar" update="messages"
 								action="#{ventaTragoAction.realizarRechazo}" />

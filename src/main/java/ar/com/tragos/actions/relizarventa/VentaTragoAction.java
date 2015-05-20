@@ -86,4 +86,7 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 	public void agregarTragoCarrito() {
 		System.out.println("Vamos a agregar lo comprado al carrito");
 	}
+	public void confirmarVenta() {
+	System.out.println("Ingreso");
+	}
 }
