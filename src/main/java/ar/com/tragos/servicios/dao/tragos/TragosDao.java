@@ -49,6 +49,7 @@ public class TragosDao implements ITragosDao{
 		actualizar.setDt_ultimacompra(unTrago.getDt_ultimacompra());
 		actualizar.setEstado(unTrago.getEstado());
 		actualizar.setActivo(unTrago.isActivo());
+		actualizar.setNombre(unTrago.getNombre());
 		em.merge(actualizar);
 	}
 
