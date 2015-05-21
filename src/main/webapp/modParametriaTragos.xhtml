@@ -31,6 +31,16 @@
 									</f:facet>
 								</p:cellEditor>
 							</p:column>
+							<p:column headerText="Descripción">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{unTrago.descripcion}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{unTrago.descripcion}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
 							<p:column headerText="Precio" style="width:50px">
 								<p:cellEditor>
 									<f:facet name="output">
