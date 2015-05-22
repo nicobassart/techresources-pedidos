@@ -14,7 +14,7 @@
 				<h:form id="form">
 
 					<p:growl id="messages" showDetail="true" sticky="true" />
-					<p:dialog id="confirmDialog" appendToBody="true"
+					<p:dialog id="confirmDialog"
 						message="Desea confirmar la venta? Tenga en cuenta el precio de pizarra"
 						header="Confirmación de venta" severity="warning"
 						widgetVar="confirmation">
@@ -50,8 +50,11 @@
 							<br/>
 
 							<!-- <p:commandButton value="Vender" ajax="true" action="#{listarPedidosBean.getVentasOnLine()}" 	/> -->
-							<p:commandButton value="Confirmar Venta" 
-								action="#{ventaTragoAction.confirmarVenta}"  oncomplete="confirmation.hide()" />
+							<p:commandButton value="Confirmar Venta" oncomplete="confirmation.hide()" action="#{ventaTragoAction.confirmarVenta}" >
+								<!-- <f:attribute name="#{listarPedidosBean.pedidoSeleccionado}"  value="#{pedido}"  /> -->
+								<f:setPropertyActionListener value="#{pedido.idCliente}" target="#{listarPedidosBean.idCliente}" />
+								<!-- <f:setPropertyActionListener value="#{pedido}" target="#{listarPedidosBean.clienteSeleccionado}" /> -->
+							</p:commandButton>
 
 							<p:commandButton value="Rechazar" update="messages"
 								action="#{ventaTragoAction.realizarRechazo}" />
@@ -90,6 +93,12 @@
 									</p:column>
 									<p:column>
 										<f:facet name="header">
+											<h:outputText value="Confirmado" />
+										</f:facet>
+										<h:outputText value="#{pedido.confirmado}" />
+									</p:column>
+									<p:column>
+										<f:facet name="header">
 											<h:outputText value="Ver" />
 										</f:facet>
 							             <p:commandButton  update=":form:carDetail" oncomplete="confirmation.show()" icon="ui-icon-search" title="View" immediate="true">
@@ -111,7 +120,6 @@
 							</p:column>
 						</p:row>
 					</p:panelGrid>
-					<!-- <p:commandButton value="Vender" update="messages" action="#{ventaTragoAction.realizarVenta}" ajax="true" /> -->
 				</h:form>
 			</ui:define>
 		</ui:composition>

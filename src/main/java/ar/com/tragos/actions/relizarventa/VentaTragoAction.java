@@ -1,7 +1,6 @@
 package ar.com.tragos.actions.relizarventa;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -87,6 +86,7 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 		System.out.println("Vamos a agregar lo comprado al carrito");
 	}
 	public void confirmarVenta() {
-	System.out.println("Ingreso");
+
+		servicioVentas.confirmarVenta(listarPedidosBean.getIdCliente());
 	}
 }

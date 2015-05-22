@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 
+import ar.com.tragos.entity.Clientes;
 import ar.com.tragos.entity.Parametria;
 import ar.com.tragos.entity.Trago;
 import ar.com.tragos.entity.Ventas;
@@ -131,6 +132,11 @@ public class ServicioVentas extends Servicios implements IServicioVentas{
 		}
 		//servicioImpresion.imprimirTexto( "****    CILANTRO BAR    ****  " + sdf.format(Calendar.getInstance().getTime()) +"    ****\n"+ textoImpresion+"\n\n\n\n\n\n\n\n\n",idMesa);
 		
+	}
+
+	@Override
+	public void confirmarVenta(int clienteSeleccionado) {
+		clientes.registrarVentas(clienteSeleccionado);
 	}
 
 }

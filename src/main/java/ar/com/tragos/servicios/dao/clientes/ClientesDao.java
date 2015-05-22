@@ -102,4 +102,20 @@ public class ClientesDao implements IClientesDao{
 		List<Clientes> resultList = em.createQuery("from Clientes").getResultList();
 		return resultList;
 	}
+
+	@Override
+	@Transactional
+	public void registrarVentas(int clienteSeleccionado) {
+		
+		Query query = em.createQuery("update  Clientes  u set u.confirmado= :confirmado  where u.idCliente = :cliente");
+		query.setParameter("confirmado", true);
+		query.setParameter("cliente", clienteSeleccionado);
+		try {
+			query.executeUpdate();
+		}
+		catch (NoResultException e) {
+			System.out.println("No hay resultados para el consumo de la mesa nro " + clienteSeleccionado);
+		}
+		
+	}
 }

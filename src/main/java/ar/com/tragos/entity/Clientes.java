@@ -17,9 +17,14 @@ public class Clientes implements Serializable {
 	private String email;
 	private String telefono;
 	private String nombre;
+	private boolean confirmado;
 	
-	
-
+	public boolean isConfirmado() {
+		return confirmado;
+	}
+	public void setConfirmado(boolean confirmado) {
+		this.confirmado = confirmado;
+	}
 	public String getNombre() {
 		return nombre;
 	}

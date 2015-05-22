@@ -37,9 +37,13 @@ public class ListarPedidosBean extends Bean {
 	private List<Clientes> lista;
 	
 	private boolean renderDetalle;
-	
-	
-			
+
+	public Clientes getClienteSeleccionado() {
+		return clienteSeleccionado;
+	}
+	public void setClienteSeleccionado(Clientes clienteSeleccionado) {
+		this.clienteSeleccionado = clienteSeleccionado;
+	}
 	public boolean isRenderDetalle() {
 		return renderDetalle;
 	}
