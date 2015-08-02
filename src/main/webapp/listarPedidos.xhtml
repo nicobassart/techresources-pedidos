@@ -49,10 +49,12 @@
 							<br/>
 							<br/>
 
+							<h:inputText value="#{listarPedidosBean.idMesa}"  > #{listarPedidosBean.idCliente}</h:inputText>
+
 							<!-- <p:commandButton value="Vender" ajax="true" action="#{listarPedidosBean.getVentasOnLine()}" 	/> -->
 							<p:commandButton value="Confirmar Venta" oncomplete="confirmation.hide()" action="#{ventaTragoAction.confirmarVenta}" >
 								<!-- <f:attribute name="#{listarPedidosBean.pedidoSeleccionado}"  value="#{pedido}"  /> -->
-								<f:setPropertyActionListener value="#{pedido.idCliente}" target="#{listarPedidosBean.idCliente}" />
+								<!-- <f:setPropertyActionListener value="#{listarPedidosBean.idCliente}" target="#{listarPedidosBean.idCliente}" /> -->
 								<!-- <f:setPropertyActionListener value="#{pedido}" target="#{listarPedidosBean.clienteSeleccionado}" /> -->
 							</p:commandButton>
 

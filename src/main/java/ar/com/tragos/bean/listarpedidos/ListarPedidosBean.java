@@ -51,7 +51,7 @@ public class ListarPedidosBean extends Bean {
 		this.renderDetalle = renderDetalle;
 	}
 	public List<Ventas> getDetalleVentas(){
-		
+		this.setIdCliente(idCliente);
 		return ventas.getVentasUnCliente(this.getIdCliente()); 
 	}
 	public List<Clientes> getVentasOnLine() {
