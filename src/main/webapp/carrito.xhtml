@@ -27,6 +27,19 @@
 					    </div>
 					  </div>
 					</div>
+					
+					<div id="popUpFinalizar"  class="modal fade bs-example-modal-sm" tabindex="-1" 
+					     role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-sm" style="margin-top: 20%;">
+					    <div class="modal-content" style="height: 50px;">
+					          <span class="label label-default"></span>
+					          <div class="alert alert-success" role="alert">
+							      <strong>Excelente!</strong> Su solicitud ha sido enviada.<a href="#" class="alert-link"></a>.
+							  </div>
+							  <img class="hidden-xs img-responsive" src="imgs/cart.png" style="margin-top: 20%; margin-left: 26%;"/>
+					    </div>
+					  </div>
+					</div>
 
 
 					<!-- Shopping cart Modal -->
@@ -428,6 +441,7 @@
 						}
 						if(ok){							
 							$('#shoppingcart1').hide();
+							$('#popUpFinalizar').modal('show');
 						}
 						return ok;
 					}
@@ -443,7 +457,17 @@
 					        clearTimeout(myModal.data('hideInterval'));
 					        myModal.data('hideInterval', setTimeout(function(){
 					            myModal.modal('hide');
-					        }, 1000));
+					        }, 1500));
+					    });
+					});
+					
+					$(function(){
+					    $('#popUpFinalizar').on('show.bs.modal', function(){
+					        var myModal = $(this);
+					        clearTimeout(myModal.data('hideInterval'));
+					        myModal.data('hideInterval', setTimeout(function(){
+					            myModal.modal('hide');
+					        }, 2000));
 					    });
 					});
 					
