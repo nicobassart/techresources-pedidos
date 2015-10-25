@@ -55,6 +55,10 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 		servicioMail.send(tragoBean.getEmail(), "Solicitud de Pedido", sBuffer.toString());
 		servicioVentas.registrarVentaOnLine(tragoBean.getListatragos(),tragoBean.getIdMesaInt(),tragoBean.getEmail(),tragoBean.getTelefono(),tragoBean.getNombre());
 
+		for (TragoView comida : tragoBean.getListatragos()) {
+			comida.setCantidad("0");
+		}
+		
 		return "success"+tragoBean.getIdMesera();
 	}
 	
