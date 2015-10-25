@@ -44,9 +44,11 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 		
 		StringBuffer sBuffer = new StringBuffer("Se ha solicitado con éxito su pedido: \n");
 		for (TragoView comida : tragoBean.getListatragos()) {
-			sBuffer.append("\n");
-			sBuffer.append(comida.getCantidad() + "  " + comida.getNombre() + ": " + comida.getDescripcion());
-			sBuffer.append("\n");
+			if(Integer.getInteger(comida.getCantidad())>0){				
+				sBuffer.append("\n");
+				sBuffer.append(comida.getCantidad() + "  " + comida.getNombre() + ": " + comida.getDescripcion());
+				sBuffer.append("\n");
+			}
 		}
 		sBuffer.append("\n Usted será informado al momento en que su pedido esté listo para ser retirado. \n\n Muchas Gracias \n\n Comidas Candy");
 			
