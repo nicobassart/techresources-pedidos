@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -28,6 +29,8 @@ public class TragoBean extends Bean {
 	private String email;
 	private String telefono;
 	private String nombre;
+	
+	private String rutarelativa;
 	
 	private List<TragoView> listatragos = new ArrayList<TragoView>();
 
@@ -52,6 +55,7 @@ public class TragoBean extends Bean {
 			asd.setPrecio(untrago.getPrecio());
 			asd.setDescripcion(untrago.getDescripcion());
 			asd.setArchivo(untrago.getNombre().replace(" ", "_"));
+			asd.setNombrearchivo(rutarelativa + untrago.getNombreArchivo());
 			// asd.setDt_ultimacompra(Calendar.getInstance().getTime());
 			asd.setEstado(untrago.getEstado());
 			listatragos.add(asd);
@@ -166,7 +170,13 @@ public class TragoBean extends Bean {
 		}
 		return total;
 	}
-	
+	public String getRutarelativa() {
+		return rutarelativa;
+	}
+	@Value("${rutarelativa}")
+	public void setRutarelativa(String rutarelativa) {
+		this.rutarelativa = rutarelativa;
+	}
 
 	
 }
