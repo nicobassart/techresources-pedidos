@@ -110,7 +110,7 @@
 					
 						<!-- Header Start -->
 						
-						<div class="header" style="height: 125px;" >
+						<div class="navbar navbar-default navbar-fixed-top" style="height: 90px;" >
 							<div class="container">
 								<!-- Header top area content -->
 								<div class="header-top" style="padding: 0px;">
@@ -154,7 +154,7 @@
 										</div>
 										<div class="col-md-4 col-sm-4 col-xs-6">
 											<!-- Header top left content contact -->
-											<div class="header-contact">
+											<div class="header-contact hidden-xs">
 												<!-- Contact number -->
 												<br /><br />
 												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -162,10 +162,10 @@
 											</div>
 										</div>
 									
-										<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="col-md-4 col-sm-4 col-xs-6" id="carritoCompras">
 											<!-- Button Kart -->
 											
-											<div class="btn-cart-md xs-12" id="prueba" onclick="$('#carritoPopUp').show()">
+											<div class="btn-cart-md xs-6" id="prueba" onclick="$('#carritoPopUp').show()" >
 											<br /><br />
 											
 													<h:outputLink class="cart-link" href="#" id="tusCompras">
@@ -174,7 +174,7 @@
 													<img class="img-responsive" src="imgs/cart.png" alt="" />
 													<!-- Heading -->
 													<h4>Tus Compras</h4>
-													<span > Productos: <label id="cantProd">0</label><br />$ <label id="cantDinero">0</label> </span>
+													<span > Productos: <label id="cantProd">0</label> &nbsp; &nbsp; $ <label id="cantDinero">0</label> </span>
 													<div class="clearfix"></div>
 													</h:outputLink>
 									
@@ -250,7 +250,7 @@
 							
 							<!-- Shopping Start -->
 							
-							<div class="shopping"  >
+							<div class="shopping"  style="padding-top: 50px;">
 								<div class="container">
 									<!-- Shopping items content -->
 									<div class="shopping-content">
@@ -470,10 +470,18 @@
 					        }, 2000));
 					    });
 					});
-					
+				
+					  
 					
 					</script>
 					
+					<style>
+					@media (max-width: 767px) {
+						#carritoCompras { 
+						     bottom: 40px;
+						}
+					}
+					</style>
 					
 				</h:form>
 			</ui:define>
