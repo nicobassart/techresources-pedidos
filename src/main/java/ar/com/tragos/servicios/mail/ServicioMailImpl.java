@@ -26,7 +26,7 @@ public class ServicioMailImpl implements IServicioMail {
   
 
     public void send(String to, String subject, String text) {
-		Properties props = new Properties();
+		final Properties props = new Properties();
 		InputStream in = getClass().getResourceAsStream("/mail.properties");
 		try {
 			props.load(in);
