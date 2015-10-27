@@ -35,6 +35,21 @@
     	<param-name>contextConfigLocation</param-name>
     	<param-value>WEB-INF/classes/applicationContext.xml</param-value>
   	</context-param>
+  	
+	<context-param>
+	  <param-name>primefaces.UPLOADER</param-name>
+	  <param-value>commons</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+
 
    <!-- Welcome Page -->
    <welcome-file-list>
