@@ -196,7 +196,7 @@
 																		</a>
 																		<!-- Image -->
 																		<div>
-																		<img class="img-responsive img-rounded" src="imgs/shopping/#{item.archivo}.jpg" alt="" />
+																		<img class="img-responsive img-rounded" src="#{item.nombrearchivo}" alt="" />
 																		<!-- Title for purchase item -->
 																		<span class="cart-title"><a href="#">#{item.nombre}</a></span>
 																		<!-- Cart item price -->
@@ -263,7 +263,7 @@
 														<div class="shopping-item">
 													 		
 															<!-- Image -->
-															<a href="Javascript: agregarProducto(#{rowIndex},#{user.precio})"><img class="img-responsive" src="imgs/shopping/#{user.archivo}.jpg" alt="" /></a>
+															<a href="Javascript: agregarProducto(#{rowIndex},#{user.precio})"><img class="img-responsive" src="#{user.nombrearchivo}" alt="" /></a>
 															<!-- Shopping item name / Heading -->
 															<h4 class="pull-left"><a href="#"><h:outputText value="#{user.nombre}" /></a></h4>
 															<span class="item-price pull-right">$ <h:outputText value="#{user.precio}" /></span>
