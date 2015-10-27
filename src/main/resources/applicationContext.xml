@@ -25,7 +25,7 @@
       <property name="password" value="${jdbc.password}"/>
     </bean>
     
-    <!--#Configuración del servicio de Spring: MailSernder -->  
+<!--     #Configuración del servicio de Spring: MailSernder  
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
      <property name="javaMailProperties">
 	    <props>
@@ -42,12 +42,12 @@
       <property name="defaultEncoding" value="UTF-8"/>  
     </bean>  
   
-    <!--#Configuración de nuestro servicio:MailService -->  
+    #Configuración de nuestro servicio:MailService  
     <bean id="mailService" class="ar.com.tragos.servicios.mail.ServicioMailImpl">  
       <property name="active" value="true"/>  
       <property name="mailSender" ref="mailSender"/>  
       <property name="from" value="contacto@techresources.com.ar"/>  
-    </bean>  
+    </bean>  --> 
     
     
     <!--bean id="entityManagerFactory"
