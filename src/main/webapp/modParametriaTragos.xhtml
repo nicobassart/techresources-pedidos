@@ -13,8 +13,10 @@
 			<ui:define name="body">
 				<h:form id="form">
 					<p:growl id="mensaje" showDetail="true" sticky="true" />
+					
 					<p:panel header="Modificacion de parametria de tragos Activar / Desactivar / Quiebra" footer="Cilantro Bar">
 			
+
 						<p:dataTable var="unTrago" value="#{parametriaTragosBean.listaTragos}"	id="carList" editable="true">
 							<p:ajax event="rowEdit" listener="#{parametriaTragosBean.onEdit}"
 								update=":form:mensaje" />
@@ -97,10 +99,52 @@
 							<p:column headerText="Opciones" style="width:30px">
 								<p:rowEditor />
 							</p:column>
-				
+							<p:column headerText="Imagen" style="width:125px">
+								<p:commandButton id="movieBtn" value="Edit" update=":form1:idTrago" icon="fa fa-fw fa-edit" immediate="true" onclick="PF('basic').show();">
+									<f:setPropertyActionListener value="#{unTrago.idtragos}" target="#{fileUploadView.idTrago}" />
+								</p:commandButton>
+							</p:column>
 						</p:dataTable>
+						
+
+
+<!--						<p:overlayPanel id="moviePanel" for="movieBtn1" hideEffect="fade" dynamic="true" style="width:600px">
+					        <p:imageSwitch effect="fade" style="width:300px;height:188px;">
+ 					            <ui:repeat value="#{imageSwitchView.images}" var="image">
+					                <p:graphicImage name="/demo/images/nature/#{image}" width="300" />
+					            </ui:repeat>
+ 					        </p:imageSwitch>
+					    </p:overlayPanel>-->
+
+						
+
 					</p:panel>
 				</h:form>
+				
+				
+										<p:dialog header="Basic Dialog" widgetVar="basic" minHeight="40">
+							<h:outputText value="Resistance to PrimeFaces is futile!" />
+							
+							<h:form id="form1" enctype="multipart/form-data">
+							    <p:growl id="messages" showDetail="true" />
+							 
+							    <!-- <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"  /> -->
+							    <h:inputHidden id="idTrago" value="#{fileUploadView.idTrago}"/>
+							    <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced"  
+                     						  update="messages" sizeLimit="200000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" immediate="false" auto="false" />
+							 
+							    <!-- <p:commandButton value="Submit" ajax="true" actionListener="#{fileUploadView.upload}" disabled="false" /> -->
+							</h:form>
+							
+<!-- 							<h:panelGrid columns="2">
+						        <p:imageCropper value="#{cropperView.croppedImage}" image="imgs/Vanesa_Orgasmo.jpg" initialCoords="225,75,300,125"/>
+						        <p:graphicImage id="cropped" name="imgs/#{cropperView.newImageName}.jpg" />
+						    </h:panelGrid>
+						 
+						    <p:commandButton value="Crop" action="#{cropperView.crop}" update="cropped" icon="ui-icon-scissors"/> -->
+							
+							
+						</p:dialog>
 			</ui:define>
 		</ui:composition>
 	</f:view>
