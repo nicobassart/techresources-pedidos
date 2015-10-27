@@ -8,6 +8,7 @@ public class TragoView extends Trago{
 	private String cantidad="0";
 	private String descripcion;
 	private String archivo;
+	private String nombrearchivo;
 	
 
 	public String getArchivo() {
@@ -37,6 +38,12 @@ public class TragoView extends Trago{
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public String getNombrearchivo() {
+		return nombrearchivo;
+	}
+	public void setNombrearchivo(String nombrearchivo) {
+		this.nombrearchivo = nombrearchivo;
 	}
 	
 

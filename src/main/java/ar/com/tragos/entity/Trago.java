@@ -27,12 +27,23 @@ public class Trago implements Serializable {
 	private float precio;
 	@Column
 	private String descripcion;
+	@Column
+	private String nombreArchivo;
 	@Enumerated
 	private Estado estado;
 	@Basic
 	private boolean activo;
 	private Date dt_ultimacompra;
 	
+	
+	public String getNombreArchivo() {
+		return nombreArchivo;
+	}
+
+	public void setNombreArchivo(String nombreArchivo) {
+		this.nombreArchivo = nombreArchivo;
+	}
+
 	public Estado getEstado() {
 		return estado;
 	}
