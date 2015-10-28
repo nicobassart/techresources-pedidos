@@ -83,6 +83,25 @@
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
+	
+	<rabbit:connection-factory id="connectionFactory"
+		host="turtle.rmq.cloudamqp.com" virtual-host="ynmemqdl" username="ynmemqdl"
+		password="V-2pWPQFVq-1xvJoKBIIcQxtD8086r20" port="5672" />
+
+	<rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
+		exchange="myExchange" routing-key="foo.*" />
+
+	<rabbit:admin connection-factory="connectionFactory" />
+
+	<rabbit:queue name="myQueue" />
+
+	<rabbit:topic-exchange name="myExchange">
+		<rabbit:bindings>
+			<rabbit:binding queue="myQueue" pattern="foo.*" />
+		</rabbit:bindings>
+	</rabbit:topic-exchange>
+	
+	
     <!-- Scans the classpath of this application for @Components to deploy as beans -->
 
     <context:component-scan base-package="ar.com.tragos" />
