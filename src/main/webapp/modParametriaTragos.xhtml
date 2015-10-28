@@ -100,7 +100,7 @@
 								<p:rowEditor />
 							</p:column>
 							<p:column headerText="Imagen" style="width:125px">
-								<p:commandButton id="movieBtn" value="Edit" update=":form1:idTrago" icon="fa fa-fw fa-edit" immediate="true" onclick="PF('basic').show();">
+								<p:commandButton id="movieBtn" value="Nueva" update=":form1:idTrago" icon="fa fa-fw fa-edit" immediate="true" onclick="PF('basic').show();">
 									<f:setPropertyActionListener value="#{unTrago.idtragos}" target="#{fileUploadView.idTrago}" />
 								</p:commandButton>
 							</p:column>
@@ -130,8 +130,8 @@
 							 
 							    <!-- <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"  /> -->
 							    <h:inputHidden id="idTrago" value="#{fileUploadView.idTrago}"/>
-							    <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced"  
-                     						  update="messages" sizeLimit="200000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" immediate="false" auto="false" />
+							    <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced"  label="Examinar" 
+                     						  update="messages" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  auto="false" />
 							 
 							    <!-- <p:commandButton value="Submit" ajax="true" actionListener="#{fileUploadView.upload}" disabled="false" /> -->
 							</h:form>
