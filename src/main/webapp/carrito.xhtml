@@ -23,7 +23,7 @@
 					          <div class="alert alert-success" role="alert">
 							      <strong>Excelente!</strong> Producto Agregado al carrito<a href="#" class="alert-link"></a>.
 							  </div>
-							  <img class="hidden-xs img-responsive" src="imgs/cart.png" style="margin-top: 20%; margin-left: 26%;"/>
+							  <img class="hidden-xs img-responsive" src="imgs/cart.png" style="margin-top: 20%; margin-left: 20px;"/>
 					    </div>
 					  </div>
 					</div>
@@ -36,7 +36,7 @@
 					          <div class="alert alert-success" role="alert">
 							      <strong>Excelente!</strong> Su solicitud ha sido enviada.<a href="#" class="alert-link"></a>.
 							  </div>
-							  <img class="hidden-xs img-responsive" src="imgs/cart.png" style="margin-top: 20%; margin-left: 26%;"/>
+							  <img class="hidden-xs img-responsive" src="imgs/cart.png" style="margin-top: 20%; margin-left: 20px;"/>
 					    </div>
 					  </div>
 					</div>
@@ -139,7 +139,7 @@
 <!-- 									</div> -->
 									
 									<div class="row">
-										<div class="col-md-4 col-sm-4 col-xs-6">
+										<div class="col-md-4 col-sm-4 col-xs-4">
 										<!-- Link -->
 										<a href="index.html">
 											<!-- Logo area -->
@@ -152,9 +152,9 @@
 											</div>
 										</a>
 										</div>
-										<div class="col-md-4 col-sm-4 col-xs-6">
+										<div class="col-md-4 col-sm-4 hidden-xs">
 											<!-- Header top left content contact -->
-											<div class="header-contact hidden-xs">
+											<div class="header-contact ">
 												<!-- Contact number -->
 												<br /><br />
 												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -162,19 +162,20 @@
 											</div>
 										</div>
 									
-										<div class="col-md-4 col-sm-4 col-xs-6" id="carritoCompras">
+										<div class="col-md-4 col-xs-8" id="carritoCompras" style="bottom: 30px;">
 											<!-- Button Kart -->
-											
-											<div class="btn-cart-md xs-6" id="prueba" onclick="$('#carritoPopUp').show()" >
-											<br /><br />
+											<div class="btn-cart-md xs-12" id="carritoPanel" onclick="$('#carritoPopUp').show()" >
+												<br /><br />
 											
 													<h:outputLink class="cart-link" href="#" id="tusCompras">
 													 <f:ajax execute="@form" event="click" immediate="true" render="prueba1 prueba2" > </f:ajax>
 													<!-- Image -->
 													<img class="img-responsive" src="imgs/cart.png" alt="" />
+													
 													<!-- Heading -->
 													<h4>Tus Compras</h4>
-													<span > Productos: <label id="cantProd">0</label> &nbsp; &nbsp; $ <label id="cantDinero">0</label> </span>
+													<span > Productos: <label id="cantProd">0</label> &nbsp; &nbsp; $ <label id="cantDinero">0</label>
+													</span>
 													<div class="clearfix"></div>
 													</h:outputLink>
 									
@@ -231,9 +232,30 @@
 												</ul>
 												<div class="clearfix"></div>
 											</div>
+											<div class="btn-cart-md xs-12" onclick="$('#carritoPopUp').show()">
+
+												<h:outputLink class="cart-link" href="#">
+													<f:ajax execute="@form" event="click" immediate="true"
+														render="prueba1 prueba2">
+													</f:ajax>
+													<!-- Image -->
+													<img src="imgs/bt_continuar.png"
+														style="margin-bottom: 0px; 
+														       margin-top: 0px; margin-left: 215px; 
+														       height: 40px; border-bottom-width: 10px; 
+														       border-top-width: 10px; 
+														       padding-bottom: 0px; 
+														       width: 125px;
+														       max-width: 200px;">
+
+													</img>
+
+
+													
+												</h:outputLink>
+											</div>
 
 										</div>
-										
 									</div>
 								
 								</div>
