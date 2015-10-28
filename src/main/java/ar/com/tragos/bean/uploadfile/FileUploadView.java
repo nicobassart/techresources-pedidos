@@ -1,4 +1,5 @@
 package ar.com.tragos.bean.uploadfile;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.io.OutputStream;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.imageio.ImageIO;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import ar.com.tragos.bean.uploadfile.Scalr.Rotation;
 import ar.com.tragos.entity.Trago;
 import ar.com.tragos.servicios.dao.tragos.ITragosDao;
  
@@ -57,23 +60,49 @@ public class FileUploadView {
     	    
     	    
     	 // write the inputStream to a FileOutputStream
-            OutputStream out = new FileOutputStream(new File(imgdirectory + fileName)); // cannot find path when adding username atm
+//            OutputStream out = new FileOutputStream(new File(imgdirectory + fileName)); // cannot find path when adding username atm
             System.out.println("Called CopyFile"); //testing
             //Will need to take the uploadfileName and If it is a doc file onvert it
-            int read = 0;
-            byte[] bytes = new byte[1024];
-            InputStream in = uploadedFile.getInputstream();
-            while ((read = in.read(bytes)) != -1) {
-                out.write(bytes, 0, read);
-            }
+//            int read = 0;
+//            byte[] bytes = new byte[1024];
+//            InputStream in = uploadedFile.getInputstream();
+//            while ((read = in.read(bytes)) != -1) {
+//                out.write(bytes, 0, read);
+//            }
+            
+            
 
-            in.close();
+            
+            try{ InputStream is = event.getFile().getInputstream();
+                 OutputStream out = new FileOutputStream(new File(imgdirectory + fileName));  
+
+                 BufferedImage img = ImageIO.read(is);
+                 BufferedImage scaledImg;
+                 if(img.getWidth() >= img.getHeight())
+                     scaledImg = Scalr.resize(img, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC,Rotation.NONE,  240, 140);
+                 else
+                	scaledImg = Scalr.resize(img, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC,Rotation.NONE, 240, 140);
+                 	ImageIO.write(scaledImg, "jpg", out);
+
+   
+
+            	
+            
+            
+            
+            
+            
+            
+            
+            //in.close();
             out.flush();
             out.close();
             untrago.setNombreArchivo(fileName);
             trago.update(untrago);
     	
-    	
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
