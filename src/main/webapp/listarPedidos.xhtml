@@ -103,7 +103,7 @@
 										<f:facet name="header">
 											<h:outputText value="Ver" />
 										</f:facet>
-							             <p:commandButton  update=":form:carDetail" oncomplete="confirmation.show()" icon="ui-icon-search" title="View" immediate="true">
+							             <p:commandButton  update=":form:carDetail" oncomplete="PF('confirmation').show();" icon="ui-icon-search" title="View" immediate="true">
 							                <f:setPropertyActionListener value="#{pedido.idCliente}" target="#{listarPedidosBean.idCliente}" />
 							            </p:commandButton>											
 <!--  										<p:commandButton value="ver" ajax="true" immediate="true"
