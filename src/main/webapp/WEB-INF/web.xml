@@ -53,7 +53,7 @@
 
    <!-- Welcome Page -->
    <welcome-file-list>
-     <welcome-file>index.xhtml</welcome-file>
+     <welcome-file>carrito.xhtml</welcome-file>
    </welcome-file-list>
 
   	<listener>
