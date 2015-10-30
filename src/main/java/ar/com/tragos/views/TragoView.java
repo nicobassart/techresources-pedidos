@@ -40,6 +40,8 @@ public class TragoView extends Trago{
 		this.descripcion = descripcion;
 	}
 	public String getNombrearchivo() {
+		if(nombrearchivo==null)
+			return "sinImagen.png";
 		return nombrearchivo;
 	}
 	public void setNombrearchivo(String nombrearchivo) {

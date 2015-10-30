@@ -14,7 +14,7 @@
 				<h:form id="form">
 					<p:growl id="mensaje" showDetail="true" sticky="true" />
 					
-					<p:panel header="Modificacion de parametria de tragos Activar / Desactivar / Quiebra" footer="Cilantro Bar">
+					<p:panel header="Modificacion de parametria." footer="Resto TechResources">
 			
 
 						<p:dataTable var="unTrago" value="#{parametriaTragosBean.listaTragos}"	id="carList" editable="true">
@@ -96,13 +96,13 @@
 									</f:facet>
 								</p:cellEditor>
 							</p:column>
-							<p:column headerText="Opciones" style="width:30px">
-								<p:rowEditor />
-							</p:column>
 							<p:column headerText="Imagen" style="width:125px">
-								<p:commandButton id="movieBtn" value="Nueva" update=":form1:idTrago" icon="fa fa-fw fa-edit" immediate="true" onclick="PF('basic').show();">
+								<p:commandButton id="movieBtn" value="Imagen" update=":form1:idTrago" icon="fa fa-fw fa-upload" immediate="true" onclick="PF('basic').show();">
 									<f:setPropertyActionListener value="#{unTrago.idtragos}" target="#{fileUploadView.idTrago}" />
 								</p:commandButton>
+							</p:column>
+							<p:column headerText="Opciones" style="width:30px">
+								<p:rowEditor />
 							</p:column>
 						</p:dataTable>
 						
@@ -122,8 +122,9 @@
 				</h:form>
 				
 				
-										<p:dialog header="Basic Dialog" widgetVar="basic" minHeight="40">
-							<h:outputText value="Resistance to PrimeFaces is futile!" />
+						<p:dialog header="Carga de Imagen" widgetVar="basic" minHeight="40">
+							<h:outputText value="Presionando el botón examinar podrá seleccionar la imagen para subir" />
+							<h:outputText value="IMPORTANTE: Recuerde que el tamaño debe ser de 400 x 450 px, para que se puede visualizar correctamente." />
 							
 							<h:form id="form1" enctype="multipart/form-data">
 							    <p:growl id="messages" showDetail="true" />

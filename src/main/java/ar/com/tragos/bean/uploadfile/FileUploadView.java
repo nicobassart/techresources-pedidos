@@ -73,14 +73,27 @@ public class FileUploadView {
             
 
             
-            try{ InputStream is = event.getFile().getInputstream();
-                 OutputStream out = new FileOutputStream(new File(imgdirectory + fileName));  
+            try{ 
+            	InputStream is = event.getFile().getInputstream();
+                OutputStream out = new FileOutputStream(new File(imgdirectory + fileName));  
 
-                 BufferedImage img = ImageIO.read(is);
-                 BufferedImage scaledImg;
-                 if(img.getWidth() >= img.getHeight())
-                     scaledImg = Scalr.resize(img, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC,Rotation.NONE,  240, 140);
-                 else
+                BufferedImage img = ImageIO.read(is);
+                BufferedImage scaledImg;
+                /*
+                 *  400 x 450 sería el tamaño recomendable
+                 */
+                 
+                int width = img.getWidth();
+                int height = img.getHeight();
+                if(width != 400 || height!=450 ){
+                    FacesMessage message = new FacesMessage("Problemas", " El Ancho de la imagen y el alto tienen que ser de 400 x 450 px.");
+                    FacesContext.getCurrentInstance().addMessage(null, message);
+                    return;
+                }
+                	
+                if(img.getWidth() >= img.getHeight())
+                	scaledImg = Scalr.resize(img, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC,Rotation.NONE,  240, 140);
+                else
                 	scaledImg = Scalr.resize(img, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC,Rotation.NONE, 240, 140);
                  	ImageIO.write(scaledImg, "jpg", out);
 
@@ -94,7 +107,7 @@ public class FileUploadView {
             
             
             
-            //in.close();
+            is.close();
             out.flush();
             out.close();
             untrago.setNombreArchivo(fileName);
@@ -103,7 +116,7 @@ public class FileUploadView {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesMessage message = new FacesMessage("Perfecto", "El archivo "+ event.getFile().getFileName() + " fué cargado correctamente.");
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
