@@ -51,11 +51,7 @@
 
 							<h:inputText value="#{listarPedidosBean.idMesa}"  > #{listarPedidosBean.idCliente}</h:inputText>
 
-							<!-- <p:commandButton value="Vender" ajax="true" action="#{listarPedidosBean.getVentasOnLine()}" 	/> -->
 							<p:commandButton value="Confirmar Venta" oncomplete="PF('confirmation').hide();" action="#{ventaTragoAction.confirmarVenta}" >
-								<!-- <f:attribute name="#{listarPedidosBean.pedidoSeleccionado}"  value="#{pedido}"  /> -->
-								<!-- <f:setPropertyActionListener value="#{listarPedidosBean.idCliente}" target="#{listarPedidosBean.idCliente}" /> -->
-								<!-- <f:setPropertyActionListener value="#{pedido}" target="#{listarPedidosBean.clienteSeleccionado}" /> -->
 							</p:commandButton>
 
 							<p:commandButton value="Rechazar" update="messages"
@@ -103,9 +99,12 @@
 										<f:facet name="header">
 											<h:outputText value="Ver" />
 										</f:facet>
-							             <p:commandButton  update=":form:carDetail" oncomplete="PF('confirmation').show();" icon="ui-icon-search" title="View" immediate="true">
-							                <f:setPropertyActionListener value="#{pedido.idCliente}" target="#{listarPedidosBean.idCliente}" />
-							            </p:commandButton>											
+										<p:fragment autoUpdate="true">
+								            <p:commandButton  update=":form:carDetail :form:idMesa :form:clienteSeleccionado" oncomplete="PF('confirmation').show();" icon="ui-icon-search" title="View" ajax="true" immediate="true">
+								                <f:setPropertyActionListener value="#{pedido.idCliente}" target="#{listarPedidosBean.idCliente}" />
+								                <f:setPropertyActionListener value="#{pedido}" target="#{listarPedidosBean.clienteSeleccionado}" />
+								            </p:commandButton>											
+										</p:fragment>
 <!--  										<p:commandButton value="ver" ajax="true" immediate="true"
 											action="#{listarPedidosBean.setIdCliente(pedido.idCliente)}"
 											oncomplete="confirmation.show()">
@@ -116,12 +115,12 @@
 											<!-- <f:ajax event="click" listener="#{listarPedidosBean.setIdCliente(pedido.idCliente)}"  oncomplete="confirmation.show()"/> -->
 									</p:column>
 								</p:dataTable>
-
-								
 								
 							</p:column>
 						</p:row>
 					</p:panelGrid>
+ 					<h:inputHidden  id="clienteSeleccionado" value="#{listarPedidosBean.clienteSeleccionado}" />
+ 					<h:inputHidden  id="idMesa" value="#{listarPedidosBean.idCliente}" /> 
 				</h:form>
 			</ui:define>
 		</ui:composition>

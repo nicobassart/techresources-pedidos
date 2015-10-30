@@ -3,7 +3,6 @@ package ar.com.tragos.actions.relizarventa;
 import javax.faces.application.FacesMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.WebApplicationContext;
@@ -12,6 +11,7 @@ import ar.com.tragos.actions.Action;
 import ar.com.tragos.bean.listarpedidos.ListarPedidosBean;
 import ar.com.tragos.bean.trago.TragoBean;
 import ar.com.tragos.servicios.colas.IServicioColas;
+import ar.com.tragos.servicios.dao.clientes.IClientesDao;
 import ar.com.tragos.servicios.mail.IServicioMail;
 import ar.com.tragos.servicios.ventas.IServicioVentas;
 import ar.com.tragos.views.TragoView;
@@ -36,6 +36,7 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 		
     @Autowired
     private IServicioColas servicioColas;
+
 	
 	public String realizarVenta() {
 		
@@ -98,13 +99,6 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 
 		servicioVentas.confirmarVenta(listarPedidosBean.getIdCliente());
 		
-		enviarMsj();
-	}
-	
-	public void enviarMsj() {
-
 		servicioColas.encolarMensaje("Su pedido está listo para ser retirado",listarPedidosBean.getClienteSeleccionado().getTelefono());
-
 	}
-	
 }
