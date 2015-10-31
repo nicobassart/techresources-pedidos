@@ -55,10 +55,13 @@
 											oncomplete="PF('confirmation').hide();" action="#{ventaTragoAction.confirmarVenta}">
 											 <f:ajax render="tablaPedidos"/>
 							</p:commandButton>
+											
 
-							<p:commandButton value="Rechazar" update="messages"
-								action="#{ventaTragoAction.realizarRechazo}" />
-
+							<p:commandButton value="Rechazar"  oncomplete="PF('confirmation').hide();" 
+											action="#{ventaTragoAction.realizarRechazo}" >
+											<f:ajax render="tablaPedidos"/>
+							</p:commandButton>
+			 								
 							<p:commandButton value="Cancelar" onclick="PF('confirmation').hide();" />
 						</p:outputPanel>
 					</p:dialog>
@@ -72,33 +75,33 @@
 
 						<p:row>
 							<p:column>
-								<p:dataTable id="tablaPedidos" var="pedido" sortBy="#{pedido.confirmado}" 
+								<p:dataTable id="tablaPedidos" var="pedido"
 								             paginator="true" rows="10" rowsPerPageTemplate="5,10,15"  
 								             value="#{listarPedidosBean.ventasOnLine}" style="width: 100%">
-									<p:column sortBy="#{pedido.nombre}">
+									<p:column >
 										<f:facet name="header">
 											<h:outputText value="Nombre Cliente" />
 										</f:facet>
 										<h:outputText value="#{pedido.nombre}" />
 									</p:column>
-									<p:column sortBy="#{pedido.email}">
+									<p:column >
 										<f:facet name="header">
 											<h:outputText value="Email" />
 										</f:facet>
 										<h:outputText value="#{pedido.email}" />
 									</p:column>
-									<p:column sortBy="#{pedido.telefono}">
+									<p:column >
 										<f:facet name="header" >
 											<h:outputText value="Telefono" />
 										</f:facet>
 										<h:outputText value="#{pedido.telefono}" />
 									</p:column>
-									<p:column sortBy="#{pedido.confirmado}">
+									<p:column >
 										<f:facet name="header">
 											<h:outputText value="Confirmado"/>
 										</f:facet>
 										<h:outputText value="Si" rendered="#{pedido.confirmado}"/>
-										<h:outputText value="No" rendered="#{pedido.confirmado == false}"/>
+										<h:outputText value="Rechazado" rendered="#{pedido.confirmado == false}"/>
 										<h:outputText value="Pendiente" rendered="#{pedido.confirmado == null}"/>
 									</p:column>
 									<p:column>
@@ -106,8 +109,9 @@
 											<h:outputText value="Ver" />
 										</f:facet>
 										<p:fragment autoUpdate="true">
-								            <p:commandButton  update=":form:carDetail :form:idCliente" oncomplete="PF('confirmation').show();" icon="ui-icon-search" title="View" ajax="true" immediate="true">
+								            <p:commandButton  update=":form:idCliente :form:carDetail " oncomplete="PF('confirmation').show();" icon="ui-icon-search" title="View" ajax="true" immediate="true">
 								                <f:setPropertyActionListener value="#{pedido.idCliente}" target="#{listarPedidosBean.idCliente}" />
+								                
 								            </p:commandButton>											
 										</p:fragment>
 <!--  										<p:commandButton value="ver" ajax="true" immediate="true"
