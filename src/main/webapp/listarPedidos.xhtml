@@ -70,7 +70,7 @@
 
 						<p:row>
 							<p:column>
-								<p:dataTable var="pedido"  paginator="true" rows="10" rowsPerPageTemplate="5,10,15"  value="#{listarPedidosBean.ventasOnLine}" style="width: 100%">
+								<p:dataTable var="pedido" sortBy="#{pedido.confirmado}" paginator="true" rows="10" rowsPerPageTemplate="5,10,15"  value="#{listarPedidosBean.ventasOnLine}" style="width: 100%">
 									<p:column sortBy="#{pedido.nombre}">
 										<f:facet name="header">
 											<h:outputText value="Nombre Cliente" />
