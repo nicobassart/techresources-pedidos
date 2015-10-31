@@ -70,30 +70,31 @@
 
 						<p:row>
 							<p:column>
-								<p:dataTable var="pedido"  value="#{listarPedidosBean.ventasOnLine}" style="width: 100%">
-									<p:column>
+								<p:dataTable var="pedido"  paginator="true" rows="10" rowsPerPageTemplate="5,10,15"  value="#{listarPedidosBean.ventasOnLine}" style="width: 100%">
+									<p:column sortBy="#{pedido.nombre}">
 										<f:facet name="header">
 											<h:outputText value="Nombre Cliente" />
 										</f:facet>
 										<h:outputText value="#{pedido.nombre}" />
 									</p:column>
-									<p:column>
+									<p:column sortBy="#{pedido.email}">
 										<f:facet name="header">
 											<h:outputText value="Email" />
 										</f:facet>
 										<h:outputText value="#{pedido.email}" />
 									</p:column>
-									<p:column>
-										<f:facet name="header">
+									<p:column sortBy="#{pedido.telefono}">
+										<f:facet name="header" >
 											<h:outputText value="Telefono" />
 										</f:facet>
 										<h:outputText value="#{pedido.telefono}" />
 									</p:column>
-									<p:column>
+									<p:column sortBy="#{pedido.confirmado}">
 										<f:facet name="header">
-											<h:outputText value="Confirmado" />
+											<h:outputText value="Confirmado"/>
 										</f:facet>
-										<h:outputText value="#{pedido.confirmado}" />
+										<h:outputText value="Si" rendered="#{pedido.confirmado}"/>
+										<h:outputText value="No" rendered="#{not pedido.confirmado}"/>
 									</p:column>
 									<p:column>
 										<f:facet name="header">
