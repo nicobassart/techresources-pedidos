@@ -99,7 +99,7 @@ public class ClientesDao implements IClientesDao{
 	@Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.INTERFACES)
 	@SuppressWarnings("unchecked")
 	public List<Clientes> consultarClientes() {
-		List<Clientes> resultList = em.createQuery("from Clientes").getResultList();
+		List<Clientes> resultList = em.createQuery("from Clientes c order by c.confirmado asc").getResultList();
 		return resultList;
 	}
 	
