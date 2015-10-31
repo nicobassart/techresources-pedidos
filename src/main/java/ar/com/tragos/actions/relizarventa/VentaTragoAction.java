@@ -10,6 +10,7 @@ import org.springframework.web.context.WebApplicationContext;
 import ar.com.tragos.actions.Action;
 import ar.com.tragos.bean.listarpedidos.ListarPedidosBean;
 import ar.com.tragos.bean.trago.TragoBean;
+import ar.com.tragos.entity.Clientes;
 import ar.com.tragos.servicios.colas.IServicioColas;
 import ar.com.tragos.servicios.dao.clientes.IClientesDao;
 import ar.com.tragos.servicios.mail.IServicioMail;
@@ -36,6 +37,9 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 		
     @Autowired
     private IServicioColas servicioColas;
+    
+    @Autowired
+    private IClientesDao clienteDao;
 
 	
 	public String realizarVenta() {
@@ -97,8 +101,10 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 	}
 	public void confirmarVenta() {
 
+		Clientes cliente = clienteDao.getClienteById(listarPedidosBean.getIdCliente());
+		
 		servicioVentas.confirmarVenta(listarPedidosBean.getIdCliente());
 		
-		servicioColas.encolarMensaje("Su pedido está listo para ser retirado",listarPedidosBean.getClienteSeleccionado().getTelefono());
+		servicioColas.encolarMensaje("Su pedido está listo para ser retirado",cliente.getTelefono());
 	}
 }
