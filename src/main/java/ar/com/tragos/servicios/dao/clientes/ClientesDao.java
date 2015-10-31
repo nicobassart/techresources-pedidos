@@ -102,6 +102,15 @@ public class ClientesDao implements IClientesDao{
 		List<Clientes> resultList = em.createQuery("from Clientes").getResultList();
 		return resultList;
 	}
+	
+	@Bean
+	@Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.INTERFACES)
+	@SuppressWarnings("unchecked")
+	public Clientes getClienteById(int idCliente) {
+		Query query  = em.createQuery("from Clientes c where c.idCliente = :idCliente");
+		query.setParameter("idCliente", idCliente);
+		return (Clientes) query.getResultList().get(0);
+	}
 
 	@Override
 	@Transactional
