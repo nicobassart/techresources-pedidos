@@ -14,4 +14,5 @@ public interface IServicioVentas {
 	public void registrarVentaOnLine(List<TragoView> listatragos,
 			int idMesaInt, String email, String telefono,String nombre);
 	public void confirmarVenta(int clienteSeleccionado);
+	public void rechazarVenta(int clienteSeleccionado);
 }

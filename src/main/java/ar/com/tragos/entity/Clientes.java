@@ -17,12 +17,14 @@ public class Clientes implements Serializable {
 	private String email;
 	private String telefono;
 	private String nombre;
-	private boolean confirmado;
+	private Boolean confirmado = null;
 	
-	public boolean isConfirmado() {
+	
+	
+	public Boolean getConfirmado() {
 		return confirmado;
 	}
-	public void setConfirmado(boolean confirmado) {
+	public void setConfirmado(Boolean confirmado) {
 		this.confirmado = confirmado;
 	}
 	public String getNombre() {
@@ -49,6 +51,5 @@ public class Clientes implements Serializable {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	
 	
 }

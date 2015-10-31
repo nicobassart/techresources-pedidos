@@ -10,6 +10,7 @@ public interface IClientesDao {
 	public int registrarCliente(String email, String telefono,String nombre);
 	public List<Clientes> consultarClientes();
 	public void registrarVentas(int clienteSeleccionado);
+	public void rechazarVentas(int clienteSeleccionado);
 	public Clientes getClienteById(int idCliente);
 	
 }

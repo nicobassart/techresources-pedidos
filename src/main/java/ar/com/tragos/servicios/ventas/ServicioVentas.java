@@ -138,5 +138,10 @@ public class ServicioVentas extends Servicios implements IServicioVentas{
 	public void confirmarVenta(int clienteSeleccionado) {
 		clientes.registrarVentas(clienteSeleccionado);
 	}
+	
+	@Override
+	public void rechazarVenta(int clienteSeleccionado) {
+		clientes.rechazarVentas(clienteSeleccionado);
+	}
 
 }
