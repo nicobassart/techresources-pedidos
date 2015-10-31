@@ -49,7 +49,7 @@
 							<br/>
 							<br/>
 
-							<h:inputText value="#{listarPedidosBean.idMesa}"  > #{listarPedidosBean.idCliente}</h:inputText>
+<!-- 							<h:inputText value="#{listarPedidosBean.idMesa}"  > #{listarPedidosBean.idCliente}</h:inputText> -->
 
 							<p:commandButton value="Confirmar Venta" oncomplete="PF('confirmation').hide();" action="#{ventaTragoAction.confirmarVenta}" >
 							</p:commandButton>
@@ -100,9 +100,8 @@
 											<h:outputText value="Ver" />
 										</f:facet>
 										<p:fragment autoUpdate="true">
-								            <p:commandButton  update=":form:carDetail :form:idMesa :form:clienteSeleccionado" oncomplete="PF('confirmation').show();" icon="ui-icon-search" title="View" ajax="true" immediate="true">
+								            <p:commandButton  update=":form:carDetail :form:idCliente" oncomplete="PF('confirmation').show();" icon="ui-icon-search" title="View" ajax="true" immediate="true">
 								                <f:setPropertyActionListener value="#{pedido.idCliente}" target="#{listarPedidosBean.idCliente}" />
-								                <f:setPropertyActionListener value="#{pedido}" target="#{listarPedidosBean.clienteSeleccionado}" />
 								            </p:commandButton>											
 										</p:fragment>
 <!--  										<p:commandButton value="ver" ajax="true" immediate="true"
@@ -119,8 +118,7 @@
 							</p:column>
 						</p:row>
 					</p:panelGrid>
- 					<h:inputHidden  id="clienteSeleccionado" value="#{listarPedidosBean.clienteSeleccionado}" />
- 					<h:inputHidden  id="idMesa" value="#{listarPedidosBean.idCliente}" /> 
+ 						<h:inputHidden  id="idCliente" value="#{listarPedidosBean.idCliente}" />
 				</h:form>
 			</ui:define>
 		</ui:composition>
