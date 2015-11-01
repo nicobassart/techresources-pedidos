@@ -90,12 +90,17 @@ public class FileUploadView {
                     FacesContext.getCurrentInstance().addMessage(null, message);
                     return;
                 }
+                /*****
+                 * Las siguientes lineas son para escalar una imagen. 
+                 * 
+                 */
                 	
-                if(img.getWidth() >= img.getHeight())
-                	scaledImg = Scalr.resize(img, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC,Rotation.NONE,  240, 140);
-                else
-                	scaledImg = Scalr.resize(img, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC,Rotation.NONE, 240, 140);
-                 	ImageIO.write(scaledImg, "jpg", out);
+//                if(img.getWidth() >= img.getHeight())
+//                	scaledImg = Scalr.resize(img, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC,Rotation.NONE,  240, 140);
+//                else
+//                	scaledImg = Scalr.resize(img, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC,Rotation.NONE, 240, 140);
+//                 	ImageIO.write(scaledImg, "jpg", out);
+                 	ImageIO.write(img, "jpg", out);
 
    
 

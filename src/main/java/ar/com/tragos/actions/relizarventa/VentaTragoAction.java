@@ -85,6 +85,17 @@ public class VentaTragoAction extends Action implements IVentaTragoAction{
 
 		Clientes cliente = clienteDao.getClienteById(listarPedidosBean.getIdCliente());
 		servicioVentas.confirmarVenta(listarPedidosBean.getIdCliente());
-		servicioColas.encolarMensaje("Su pedido está listo para ser retirado",cliente.getTelefono());
+		/* Deberia validar que el celular tenga el formato correcto
+		 * */
+		
+		
+		if(cliente!=null && cliente.getTelefono()!=null && cliente.getTelefono().length()>=6)
+			servicioColas.encolarMensaje("Su pedido está listo para ser retirado",cliente.getTelefono());
+		
+		/* Deberia validar que el email tenga el formato correcto
+		 * */
+		if(cliente!=null && cliente.getEmail()!=null)
+			servicioMail.send(tragoBean.getEmail(), "Pedido Listo para entregar", "Ya puede pasar a retirar su pedido por nuestro local.");
+		
 	}
 }
